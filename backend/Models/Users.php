@@ -52,15 +52,15 @@ class Users extends DB{
                     $this->lastLogin($user['id']);
                     unset($user['password']);
 
-                    return $user;
+                    return 'authenticated_user';
                 }
 
             } else {
-                return ['code' => '401', 'message' => 'Unauthorized'];
+                return 'incorrect_password';
             }
 
         } else {
-            return ['code' => '404', 'message' => 'Not Found'];
+            return 'not_registered';
         }
     }
 
@@ -88,7 +88,5 @@ class Users extends DB{
 
         return false;
     }
-
-    
 
 }

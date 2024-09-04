@@ -31,12 +31,12 @@
 
         <div class="form-container sign-in">
 
-            <form>
+            <form id="sign-in">
                 <h1>Entrar</h1>
 
                 <span>Ou, use o seu email para entrar</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Senha">
+                <input type="email" id="email" placeholder="Email" value="l@a">
+                <input type="password" id="password" placeholder="Senha" value="1">
 
                 <a href="#">Esqueci a minha senha</a>
 
@@ -81,6 +81,7 @@
 
     </div>
 
+    <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/login.js"></script>
 
 </body>
