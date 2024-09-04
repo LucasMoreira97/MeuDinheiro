@@ -16,7 +16,7 @@
 
         <div class="form-container sign-up">
 
-            <form>
+            <form id="sign-up">
                 <h1>Criar Conta</h1>
 
                 <span>Ou, use o seu email para se registrar</span>
@@ -31,7 +31,7 @@
 
         <div class="form-container sign-in">
 
-            <form id="sign-in">
+            <form id="sign-in" onsubmit="login(event)">
                 <h1>Entrar</h1>
 
                 <span>Ou, use o seu email para entrar</span>
@@ -40,7 +40,9 @@
 
                 <a href="#">Esqueci a minha senha</a>
 
-                <button>Entrar</button>
+                <button type="submit">Entrar</button>
+
+
 
             </form>
 
@@ -83,6 +85,7 @@
 
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/login.js"></script>
+    <script src="./js/LoginScreen.js"></script>
 
 </body>
 

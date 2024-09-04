@@ -12,36 +12,36 @@ login_btn.addEventListener('click', () =>{
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
 
-    document.getElementById('sign-in').addEventListener('submit', function(event) {
-        event.preventDefault();
+//     document.getElementById('sign-in').addEventListener('submit', function(event) {
+//         event.preventDefault();
 
-        console.log('tentando logar');
+//         console.log('tentando logar');
 
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
+//         var email = document.getElementById('email').value;
+//         var password = document.getElementById('password').value;
 
-        fetch('/MagicMoney/backend/router.php/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email, password: password })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // window.location.href = 'home.php';
-                console.log('loguei');
-            } else {
-                alert(data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Ocorreu um erro ao tentar fazer o login.');
-        });
-    });
-});
+//         fetch('/MagicMoney/backend/router.php/login', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({ email: email, password: password })
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.success) {
+//                 // window.location.href = 'home.php';
+//                 console.log('loguei');
+//             } else {
+//                 alert(data.message);
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Erro:', error);
+//             alert('Ocorreu um erro ao tentar fazer o login.');
+//         });
+//     });
+// });
 
