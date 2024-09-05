@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        :root {
+            --primary-color: #11111161;
+            --secondary-color: #2D3748;
+            --accent-color: #E53E3E;
+            --background-color: #EDF2F7;
+            --text-color: #4A5568;
+            --input-background: #eee;
+            --border-radius: 8px;
+            --spacing: 12px;
+            --label-spacing: 4px;
+            --shadow-light: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            --font-size-base: 16px;
+            --font-size-mobile: 18px;
+            --input-padding-mobile: 14px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing);
+            background-color: #fff;
+            padding: var(--spacing);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            padding: 3vh;
+        }
+
+        .form-group {
+            flex: 1 1 calc(33.33% - var(--spacing));
+            margin-bottom: var(--spacing);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--label-spacing);
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background-color: var(--input-background);
+            border: none;
+            margin: 4px 0;
+            padding: 10px 15px;
+            font-size: var(--font-size-base);
+            border-radius: var(--border-radius);
+            width: 100%;
+            outline: none;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            box-shadow: 0 0 5px var(--primary-color);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 2vh;
+            width: 100%;
+        }
+
+        .button {
+            background-color: #4CAFEB;
+            color: white;
+            padding: 12px 40px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: var(--font-size-base);
+            transition: background-color 0.3s ease;
+            margin-top: var(--spacing);
+        }
+
+        .button:hover {
+            background-color: darken(var(--accent-color), 10%);
+        }
+
+
+        @media (max-width: 768px) {
+            .form-group {
+                flex: 1 1 100%;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: var(--font-size-mobile);
+                padding: var(--input-padding-mobile);
+            }
+
+            label {
+                font-size: var(--font-size-mobile);
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .form-group {
+                flex: 1 1 calc(50% - var(--spacing));
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+    <div id="income-page">
+
+
+        <div class="container">
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="source">Origem</label>
+                    <input type="text" id="source" name="source" placeholder="Ex.: Salário, Freelancer">
+                </div>
+
+                <div class="form-group">
+                    <label for="value">Valor</label>
+                    <input type="number" id="value" name="value" placeholder="Ex.: 1500">
+                </div>
+
+                <div class="form-group">
+                    <label for="incomeType">Tipo de renda</label>
+                    <select id="incomeType" name="incomeType">
+                        <option value="fixed">Fixa</option>
+                        <option value="extra">Extra</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryDate">Data de entrada</label>
+                    <input type="date" id="entryDate" name="entryDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Descrição</label>
+                    <textarea id="description" name="description" rows="3"
+                        placeholder="Adicione detalhes sobre a renda"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recurrence">Recorrência</label>
+                    <select id="recurrence" name="recurrence">
+                        <option value="one-time">Única</option>
+                        <option value="monthly">Mensal</option>
+                        <option value="yearly">Anual</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="responsible">Responsável</label>
+                    <input type="text" id="responsible" name="responsible" placeholder="Quem gerou essa renda?">
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status de recebimento</label>
+                    <select id="status" name="status">
+                        <option value="received">Recebido</option>
+                        <option value="pending">Pendente</option>
+                    </select>
+                </div>
+
+
+                <div class="button-container">
+                    <button class="button">Salvar</button>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>// Função para definir a data atual no campo "entryDate"
+        window.onload = function () {
+            var today = new Date();
+            var day = String(today.getDate()).padStart(2, '0'); // Adiciona zero antes do dia, se necessário
+            var month = String(today.getMonth() + 1).padStart(2, '0'); // Meses começam do 0
+            var year = today.getFullYear();
+
+            var currentDate = year + '-' + month + '-' + day;
+            document.getElementById('entryDate').value = currentDate;
+        };
+    </script>
+
+
+
+
+</body>
+
+</html>
