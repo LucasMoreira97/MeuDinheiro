@@ -4,12 +4,12 @@
 
         <div class="item-group">
             <label for="source">Origem</label>
-            <input type="text" id="source" name="source" placeholder="Ex.: Salário, Freelancer">
+            <input type="text" id="source" name="source" placeholder="Ex.: Salário, Freelancer" onclick="generic.setTodayDate('income-date')">
         </div>
 
         <div class="item-group">
             <label for="value">Valor</label>
-            <input type="number" id="value" name="value" placeholder="Ex.: 1500">
+            <input type="text" id="value" name="value" placeholder="Ex.: 1500" oninput="generic.formatCurrency(this)">
         </div>
 
         <div class="item-group">
@@ -21,8 +21,8 @@
         </div>
 
         <div class="item-group">
-            <label for="entryDate">Data de entrada</label>
-            <input type="date" id="entryDate" name="entryDate">
+            <label for="income-date">Data de entrada</label>
+            <input type="date" id="income-date" name="income-date">
         </div>
 
         <div class="item-group">

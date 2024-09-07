@@ -26,7 +26,7 @@
 
         <div class="bottom-menu">
             <div class="menu-item active" id="general">
-                <img src="../src/assets/money-mangement.png" alt="">
+                <img src="../src/assets/money-mangement.png">
                 <span>Geral</span>
             </div>
 
@@ -47,9 +47,9 @@
                 <span>Investimentos</span>
             </div>
 
-            <div class="menu-item" id="profile">
-                <img src="../src/assets/profile.png">
-                <span>Perfil</span>
+            <div class="menu-item" id="adjustments">
+                <img src="../src/assets/settings.png">
+                <span>Ajustes</span>
             </div>
         </div>
 
@@ -57,6 +57,7 @@
 
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/Home.js"></script>
+    <script src="./js/Generic.js"></script>
 
     <script>
         $('.menu-item').on('click', function() {
