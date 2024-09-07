@@ -2,68 +2,61 @@
 
     <div class="container">
 
-        <div class="form-container">
+        <div class="item-group">
+            <label for="description">Descrição</label>
+            <input id="description" name="description" type="text">
+        </div>
 
-            <div class="form-group">
-                <label for="description">Descrição</label>
-                <input id="description" name="description" type="text">
-            </div>
+        <div class="item-group">
+            <label for="value">Valor</label>
+            <input type="number" id="value" name="value" placeholder="Ex.: 500">
+        </div>
 
-            <div class="form-group">
-                <label for="value">Valor</label>
-                <input type="number" id="value" name="value" placeholder="Ex.: 500">
-            </div>
+        <div class="item-group">
+            <label for="payment-method">Forma de pagamento</label>
+            <select id="payment-method" name="payment-method">
+                <option value="1">Pix</option>
+                <option value="2">Dinheiro</option>
+                <option value="3">Crédito</option>
+            </select>
 
+            <select id="installments" name="installments">
+                <option value="1">1x</option>
+                <option value="2">2x</option>
+                <option value="3">3x</option>
+            </select>
+        </div>
 
-            <div class="form-group">
-                <label for="payment-method">Forma de pagamento</label>
-                <select id="payment-method" name="payment-method">
-                    <option value="1">Pix</option>
-                    <option value="2">Dinheiro</option>
-                    <option value="3">Crédito</option>
-                </select>
+        <div class="item-group">
+            <label for="category">Categoria</label>
+            <select id="category" name="category">
+                <option value="1">Alimentação</option>
+                <option value="2">Saúde</option>
+                <option value="3">Transporte</option>
+            </select>
+        </div>
 
-                <select id="installments" name="installments">
-                    <option value="1">1x</option>
-                    <option value="2">2x</option>
-                    <option value="3">3x</option>
-                </select>
-            </div>
+        <div class="item-group">
+            <label for="type">Tipo</label>
+            <select id="type" name="type">
+                <option value="1">Dia a dia</option>
+                <option value="2">Emergencia</option>
+                <option value="3">Fixo</option>
+            </select>
+        </div>
 
+        <div class="item-group">
+            <label for="date">Data</label>
+            <input type="date" id="date" name="date">
+        </div>
 
-            <div class="form-group">
-                <label for="category">Categoria</label>
-                <select id="category" name="category">
-                    <option value="1">Alimentação</option>
-                    <option value="2">Saúde</option>
-                    <option value="3">Transporte</option>
-                </select>
-            </div>
+        <div class="item-group">
+            <label for="responsible">Responsável</label>
+            <input type="text" id="responsible" name="responsible" placeholder="Quem fez essa despesa?">
+        </div>
 
-
-            <div class="form-group">
-                <label for="type">Tipo</label>
-                <select id="type" name="type">
-                    <option value="1">Dia a dia</option>
-                    <option value="2">Emergencia</option>
-                    <option value="3">Fixo</option>
-                </select>
-            </div>
-
-
-            <div class="form-group">
-                <label for="date">Data</label>
-                <input type="date" id="date" name="date">
-            </div>
-
-
-            <div class="form-group">
-                <label for="responsible">Responsável</label>
-                <input type="text" id="responsible" name="responsible" placeholder="Quem fez essa despesa?">
-            </div>
-
-
-
+        <div class="button-container">
+            <button class="save-button">Salvar</button>
         </div>
 
     </div>
