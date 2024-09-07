@@ -1,12 +1,20 @@
-class Home{
+class Home {
 
-    test(){
-        alert('nova pagina');
+    constructor() {
+        this.view = '../src/views/';
     }
 
-    addIncomePage(){
+    test() {
+        // alert('nova pagina');
+    }
 
-        
+    addIncomePage() {
+        $('#home-page').load(this.view + 'income.html');
+    }
+
+    addExpensePage() {
+
+        $('#home-page').load(this.view + 'expense.html');
 
 
     }

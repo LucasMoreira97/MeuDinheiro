@@ -18,7 +18,7 @@ async function login(event) {
     if(data.success == true){
 
 
-        alert('usuário logado');
+        // alert('usuário logado');
 
         window.location.href = 'home.php';
 

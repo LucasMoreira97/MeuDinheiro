@@ -16,31 +16,52 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <title>MagicMoney</title>
 
     <link rel="stylesheet" href="./css/home.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha384-0bRV2YaxJhTFZu0DVP1TnATu1SoW0HhiF7ABkKByhT+Vh0C7Rx82yYTp7x0mFNCx" crossorigin="anonymous">
 
 </head>
 
 <body>
 
 
-    <div class="page">
+    <div class="page" id="home-page"></div>
+
+    <div class="bottom-menu">
+        <div class="menu-item active" id="general">
+            <img src="../src/assets/money-mangement.png" alt="">
+            <span>Geral</span>
+        </div>
 
 
+        <div class="menu-item" id="income" onclick="home.addIncomePage()">
+            <img src="../src/assets/income.png">
+            <span>Receitas</span>
+        </div>
 
+
+        <div class="menu-item" id="expenses" onclick="home.addExpensePage()">
+            <img src="../src/assets/expenses-in-business.png">
+            <span>Despesas</span>
+        </div>
+
+        <div class="menu-item" id="investments">
+            <img src="../src/assets/currency.png">
+            <span>Investimentos</span>
+        </div>
+
+        <div class="menu-item" id="profile">
+            <img src="../src/assets/profile.png">
+            <span>Perfil</span>
+        </div>
     </div>
 
-    <div class="menu">
-        <ul>
-            <li onclick="home.test()">Saúde financeira</li>
-            <li onclick="home.addIncomePage()">Receitas</li>
-            <li>Despesas</li>
-            <li>Investimentos</li>
-            <li>Perfil</li>
-        </ul>
-    </div>
-
-
+    <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/Home.js"></script>
+
+    <script>
+        $('.menu-item').on('click', function() {
+            $('.menu-item').removeClass('active');
+            $(this).addClass('active');
+        });
+    </script>
 
 </body>
 
