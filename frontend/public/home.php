@@ -24,114 +24,32 @@
 
     <div class="home">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="page" id="home-page">
-
-
-
-
-
-
-
 
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="bottom-menu">
-            <div class="menu-item active" id="general">
-                <img src="../src/assets/money-mangement.png">
+            <div class="menu-item active general">
+                <img src="../src/assets/general_menu.png">
                 <span>Geral</span>
             </div>
 
-            <div class="menu-item" id="income" onclick="home.loadPage('income')">
+            <div class="menu-item income" onclick="home.loadPage('income')">
                 <img src="../src/assets/income.png">
                 <span>Receitas</span>
             </div>
 
-            <div class="menu-item" id="expenses" onclick="home.loadPage('expenses')">
-                <img src="../src/assets/expenses-in-business.png">
+            <div class="menu-item expenses" onclick="home.loadPage('expenses')">
+                <img src="../src/assets/expenses.png">
                 <span>Despesas</span>
             </div>
 
-            <div class="menu-item" id="investments">
-                <img src="../src/assets/currency.png">
-                <span>Investimentos</span>
+            <div class="menu-item investments">
+                <img src="../src/assets/investment.png">
+                <span>Aportes</span>
             </div>
 
-            <div class="menu-item" id="settings" onclick="home.loadPage('settings')">
+            <div class="menu-item settings" onclick="home.loadPage('settings')">
                 <img src="../src/assets/settings.png">
                 <span>Ajustes</span>
             </div>
