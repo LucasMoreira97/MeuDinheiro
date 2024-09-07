@@ -1,0 +1,59 @@
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-container label {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.input-container input {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    padding: 8px 0;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-container input:focus {
+    border-bottom: 1px solid var(--ios-blue);
+}
+
+.input-container input::placeholder {
+    color: #C7C7CC;
+}
+
+.select-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.select-container label {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.select-container select {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.3s;
+    appearance: none; /* Remove default arrow in most browsers */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10"><path fill="none" stroke="%23777" stroke-width="2" d="M1 1l6 6 6-6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+}
+
+.select-container select:focus {
+    border-color: var(--ios-blue);
+}

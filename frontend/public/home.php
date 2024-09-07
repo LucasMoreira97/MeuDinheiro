@@ -16,13 +16,99 @@
     <title>MagicMoney</title>
 
     <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/test.css">
 
 </head>
 
 <body>
 
     <div class="home">
-        <div class="page" id="home-page"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="page" id="home-page">
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="bottom-menu">
             <div class="menu-item active" id="general">
@@ -30,14 +116,12 @@
                 <span>Geral</span>
             </div>
 
-
-            <div class="menu-item" id="income" onclick="home.addIncomePage()">
+            <div class="menu-item" id="income" onclick="home.loadPage('income')">
                 <img src="../src/assets/income.png">
                 <span>Receitas</span>
             </div>
 
-
-            <div class="menu-item" id="expenses" onclick="home.addExpensePage()">
+            <div class="menu-item" id="expenses" onclick="home.loadPage('expenses')">
                 <img src="../src/assets/expenses-in-business.png">
                 <span>Despesas</span>
             </div>
@@ -47,7 +131,7 @@
                 <span>Investimentos</span>
             </div>
 
-            <div class="menu-item" id="adjustments">
+            <div class="menu-item" id="settings" onclick="home.loadPage('settings')">
                 <img src="../src/assets/settings.png">
                 <span>Ajustes</span>
             </div>

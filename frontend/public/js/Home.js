@@ -8,17 +8,9 @@ class Home {
         // alert('nova pagina');
     }
 
-    addIncomePage() {
-        $('#home-page').load(this.view + 'income.html');
+    loadPage(page) {
+        $('#home-page').load(this.view + page + '.html');
     }
-
-    addExpensePage() {
-
-        $('#home-page').load(this.view + 'expense.html');
-
-
-    }
-
 }
 
 var home = new Home;
