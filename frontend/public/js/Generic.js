@@ -1,13 +1,5 @@
 class Generic {
 
-    // selectMenuItem(){
-    //     $('.menu-item').removeClass('active');
-    //     $(this).addClass('active');
-    // }
-
-
-
-
     formatCurrency(input) {
 
         let currency = input.value.replace(/\D/g, '');
@@ -33,10 +25,32 @@ class Generic {
     }
 
 
+    previewUserPhoto(input) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        var $preview = $('#user-photo-preview');
+        var $placeholder = $('.user-photo-placeholder');
+
+        reader.onload = function (e) {
+            $preview.attr('src', e.target.result).addClass('uploaded');
+            $placeholder.hide();
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
 }
 
 
 var generic = new Generic;
+
+$(document).ready(function () {
+    $('#user-photo').on('change', function () {
+        generic.previewUserPhoto(this);
+    });
+});
 
 // $('.menu-item').on('click', function() {
 //     generic.selectMenuItem();

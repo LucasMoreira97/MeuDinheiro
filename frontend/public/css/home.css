@@ -121,6 +121,7 @@
 .item-group input[type="date"] {
     font-size: 16px;
     padding: 10px;
+    height: 44px;
     border-radius: 8px;
     border: 1px solid #ddd;
     background-color: #fff;
@@ -131,6 +132,14 @@
 
 .item-group input[type="date"]:focus {
     border-color: var(--ios-blue);
+}
+
+.item-group input[disabled] {
+    background-color: #FAFAFA;
+}
+
+.item-group input[type="date"][disabled] {
+    background-color: #FAFAFA;
 }
 
 .button-container {
@@ -222,14 +231,7 @@
     box-shadow: 0 0 0 3px rgba(249, 60, 58, 0.4);
 }
 
-
 /* settings */
-.settings-page .container {
-    padding: 15px;
-    width: 100%;
-    font-family: Arial, sans-serif;
-}
-
 .settings-page ul {
     list-style-type: none;
     padding: 0;
@@ -400,6 +402,65 @@
     opacity: 1;
 }
 
+/* Profile Settings - ini */
+
+.profile-page .photo {
+    display: block;
+    min-width: 100%;
+    clear: both;
+}
+
+.profile-page .edit-photo {
+    display: flex;
+    justify-content: right;
+    min-width: 100%;
+    padding-right: 2vh;
+    color: var(--ios-blue);
+}
+
+.profile-page .edit-photo:hover {
+    cursor: pointer;
+}
+
+.profile-page #user-photo {
+    display: none;
+}
+
+.profile-page .user-photo-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    border: 2px dashed #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.profile-page .user-photo-label:hover {
+    background-color: #e0e0e0;
+}
+
+.profile-page .user-photo-label img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: none;
+
+    background-color: #E3E3E5;
+}
+
+.profile-page .user-photo-label img.uploaded {
+    display: block;
+}
+
+/* Profile Settings - end */
+
 @media (max-width: 768px) {
 
     .item-group {
@@ -468,6 +529,10 @@
     .container {
         width: var(--computer-screen);
         margin: auto;
+    }
+
+    .item-group input[type="date"] {
+        height: 36px;
     }
 
     .bottom-menu {

@@ -1,0 +1,47 @@
+<div class="profile-page">
+
+    <div class="container">
+
+        <div class="item-group photo">
+            <label for="user-photo" class="user-photo-label">
+                <img id="user-photo-preview" class="uploaded" src="../src/assets/solid_user.png">
+            </label>
+            <input id="user-photo" name="user-photo" type="file" accept="image/*" onchange="generic.previewUserPhoto(this)">
+        </div>
+
+        <div class="item-group edit-photo">
+            <p>Editar</p>
+        </div>
+
+        <div class="item-group">
+            <label for="name">Nome</label>
+            <input id="name" name="name" type="text" disabled>
+        </div>
+
+        <div class="item-group">
+            <label for="username">Nome de Usuário</label>
+            <input id="username" name="username" type="text" disabled>
+        </div>
+
+        <div class="item-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" disabled>
+        </div>
+
+        <div class="item-group">
+            <label for="phone">Celular</label>
+            <input id="phone" name="phone" type="tel" disabled oninput="generic.formatPhone(this)">
+        </div>
+
+        <div class="item-group">
+            <label for="birthdate">Data de Aniversário</label>
+            <input type="date" id="birthdate" name="birthdate" disabled>
+        </div>
+
+        <div class="button-container">
+            <button class="save-button">Salvar</button>
+        </div>
+
+    </div>
+
+</div>
