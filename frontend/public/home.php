@@ -24,7 +24,11 @@
 
     <div class="home">
 
-        <div class="page" id="home-page"> </div>
+        <div class="page" id="home-page">
+
+
+        </div>
+
 
         <div class="bottom-menu">
             <div class="menu-item active general">
