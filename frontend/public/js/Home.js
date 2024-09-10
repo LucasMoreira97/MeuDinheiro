@@ -19,8 +19,26 @@ class Home {
                 $('#home-page').load('../src/views/settings/expenses.html');
                 break;
 
+            case 'payment-method':
+                $('#home-page').load('../src/views/expense-settings/payment-method.html');
+                break;
 
-                
+            case 'payment-category':
+                $('#home-page').load('../src/views/expense-settings/payment-category.html');
+                break;
+
+            case 'payment-type':
+                $('#home-page').load('../src/views/expense-settings/payment-type.html');
+                break;
+
+            case 'settings-income':
+                $('#home-page').load('../src/views/settings/income.html');
+                break;
+
+            case 'income-recurrence':
+                $('#home-page').load('../src/views/income-settings/income-recurrence.html');
+                break;
+
         }
 
     }

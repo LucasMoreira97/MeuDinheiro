@@ -57,8 +57,7 @@
     margin-bottom: 14vh;
 }
 
-.container,
-.component {
+.container {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing);
@@ -67,6 +66,16 @@
     border-radius: var(--component-radius);
     box-shadow: var(--shadow-light);
     padding: 3vh;
+}
+
+.component {
+    display: none;
+    flex-wrap: wrap;
+    gap: var(--spacing);
+}
+
+.full-line{
+    width: 100%;
 }
 
 .item-group {
@@ -152,29 +161,27 @@
 
 /* Save Button */
 .save-button {
-    font-size: 16px;
-    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 22px;
     background-color: var(--ios-blue);
     color: white;
+    font-size: 14px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .save-button:hover {
-    background-color: #005BBB;
+    background-color: #005bbb;
+    transform: scale(1.05);
 }
+
 
 .save-button:active {
     transform: scale(0.98);
-    background-color: #004DAA;
-}
-
-.save-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.4);
 }
 
 /* Edit Button */
@@ -230,6 +237,36 @@
 .delete-button:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(249, 60, 58, 0.4);
+}
+
+/* Add button */
+
+.add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 14px;
+    background-color: var(--ios-blue);
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-button:hover {
+    background-color: #005bbb;
+    transform: scale(1.05);
+}
+
+.add-button .icon {
+    margin-left: 10px;
+    font-size: 22px;
+}
+
+.add-button:active {
+    transform: scale(0.98);
 }
 
 /* settings */
@@ -469,7 +506,19 @@
     background-color: var(--vivid-orange);
 }
 
+.submenu-income img {
+    background-color: var(--vibrant-green);
+}
 /* Submenu - end */
+
+.container .info {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+    font-weight: 300;
+    margin: 10px 0;
+    width: 100%;
+}
 
 /* Breadcrumbs - ini */
 .breadcrumb {
@@ -479,6 +528,7 @@
     list-style: none;
     background-color: #f5f5f5;
     border-radius: 8px;
+    width: 100%;
 }
 
 .breadcrumb li {
@@ -489,7 +539,7 @@
 
 .breadcrumb li span {
     cursor: pointer;
-    color: #007aff;
+    color: var(--ios-blue);
     font-weight: 600;
     transition: color 0.3s ease;
 }
@@ -498,7 +548,7 @@
     color: #005bbb;
 }
 
-.breadcrumb .first{
+.breadcrumb .first {
     padding-left: 1vh;
 }
 
@@ -517,7 +567,45 @@
     font-weight: bold;
     cursor: default;
 }
+
 /* Breadcrumbs - end */
+
+
+/* List - ini*/
+
+.container .list{
+    width: 100%;
+}
+
+.container .list .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.container .list .item .info {
+    font-size: 14px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.container .list .item .info:not(:last-child) {
+    margin-right: 20px;
+}
+
+.container .list .item .edit {
+    cursor: pointer;
+    color: var(--ios-blue);
+}
+
+.container .list .item .remove {
+    cursor: pointer;
+    color: var(--vivid-red);
+}
+
+/* List - end*/
 
 
 @media (max-width: 768px) {
@@ -567,6 +655,10 @@
 
     .settings-page .arrow-icon {
         font-size: 16px;
+    }
+
+    .container .add-button .icon {
+        margin-bottom: 0.7vh;
     }
 }
 

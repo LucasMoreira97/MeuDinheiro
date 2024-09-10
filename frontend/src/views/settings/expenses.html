@@ -4,12 +4,12 @@
 
         <ul class="breadcrumb">
             <li><span class="first" onclick="home.loadPage('settings')">Ajustes</span></li>
-            <li><span onclick="navigateTo('expenses')">Despesas</span></li>
+            <li><span>Despesas</span></li>
         </ul>
 
         <ul>
             <li>
-                <div class="setting-item">
+                <div class="setting-item" onclick="home.loadPage('payment-method')">
                     <div class="icon submenu-expenses">
                         <img src="../src/assets/payment-methods.png" alt="icon">
                     </div>
@@ -22,7 +22,7 @@
             </li>
 
             <li>
-                <div class="setting-item">
+                <div class="setting-item" onclick="home.loadPage('payment-category')">
                     <div class="icon submenu-expenses">
                         <img src="../src/assets/category.png" alt="icon">
                     </div>
@@ -34,7 +34,7 @@
             </li>
 
             <li>
-                <div class="setting-item">
+                <div class="setting-item" onclick="home.loadPage('payment-type')">
                     <div class="icon submenu-expenses">
                         <img src="../src/assets/type.png" alt="icon">
                     </div>

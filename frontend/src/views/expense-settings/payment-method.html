@@ -1,0 +1,61 @@
+<div class="payment-method">
+
+    <div class="container">
+
+        <ul class="breadcrumb">
+            <li><span class="first" onclick="home.loadPage('settings')">Ajustes</span></li>
+            <li><span onclick="home.loadPage('settings-expenses')">Despesas</span></li>
+            <li><span>Formas de pagamento</span></li>
+        </ul>
+
+        <p class="info">Cadastre e edite suas formas de pagamento aqui. Atenção: não insira dados de contas bancárias ou
+            cartões. Apenas atribua um nome à sua forma de pagamento, como 'Cartão de crédito Itaú', e selecione o tipo,
+            por exemplo, 'Futuro'.</p>
+
+        <button class="add-button" onclick="showelement.addPaymentMethod()">
+            Adicionar
+            <span class="icon">+</span>
+        </button>
+
+        <div class="component" id="add-payment-method">
+            <div class="item-group">
+                <label for="name">nome</label>
+                <input type="text" id="name" name="name" placeholder="Pix">
+            </div>
+
+            <div class="item-group">
+                <label for="maximum_installment">Parcelamento máximo</label>
+                <input type="number" id="maximum_installment" name="maximum_installment">
+            </div>
+
+            <div class="item-group">
+                <label for="payment-type">Tipo</label>
+                <select id="payment-type" name="payment-type">
+                    <option value="money">Imediato(Pix/Dinheiro)</option>
+                    <option value="credit">Futuro(Cartões de crédito)</option>
+                </select>
+            </div>
+
+            <button class="save-button" onclick="showelement.savePaymentMethod()">Salvar</button>
+        </div>
+
+        <div class="list" id="list-payment-methods">
+            <div class="info">Altere as informações quando desejar</div>
+            <ul>
+
+                 <!-- Simulação apenas para testes -->
+                <li class="item">
+                    <span class="info">Cartão de crédito Itaú</span>
+                    <span class="info">Crédito</span>
+                    <span class="info">Parcelamento máximo 5x</span>
+                    <span class="info edit" onclick="showelement.test()">Editar</span>
+                    <!-- Função chamada apenas para testes -->
+                    <span class="info remove">Remover</span>
+
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>

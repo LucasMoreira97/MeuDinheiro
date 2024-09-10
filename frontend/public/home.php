@@ -24,44 +24,90 @@
 
     <div class="home">
 
+
+
+
+
         <div class="page" id="home-page">
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
 
 
-        <div class="bottom-menu">
-            <div class="menu-item active general">
-                <img src="../src/assets/general_menu.png">
-                <span>Geral</span>
-            </div>
+    </div>
 
-            <div class="menu-item income" onclick="home.loadPage('income')">
-                <img src="../src/assets/income.png">
-                <span>Receitas</span>
-            </div>
 
-            <div class="menu-item expenses" onclick="home.loadPage('expenses')">
-                <img src="../src/assets/expenses.png">
-                <span>Despesas</span>
-            </div>
 
-            <div class="menu-item investments">
-                <img src="../src/assets/investment.png">
-                <span>Aportes</span>
-            </div>
 
-            <div class="menu-item settings" onclick="home.loadPage('settings')">
-                <img src="../src/assets/settings.png">
-                <span>Ajustes</span>
-            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="bottom-menu">
+        <div class="menu-item active general">
+            <img src="../src/assets/general_menu.png">
+            <span>Geral</span>
         </div>
+
+        <div class="menu-item income" onclick="home.loadPage('income')">
+            <img src="../src/assets/income.png">
+            <span>Receitas</span>
+        </div>
+
+        <div class="menu-item expenses" onclick="home.loadPage('expenses')">
+            <img src="../src/assets/expenses.png">
+            <span>Despesas</span>
+        </div>
+
+        <div class="menu-item investments">
+            <img src="../src/assets/investment.png">
+            <span>Aportes</span>
+        </div>
+
+        <div class="menu-item settings" onclick="home.loadPage('settings')">
+            <img src="../src/assets/settings.png">
+            <span>Ajustes</span>
+        </div>
+    </div>
 
     </div>
 
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/Home.js"></script>
     <script src="./js/Generic.js"></script>
+    <script src="./js/ShowElement.js"></script>
 
     <script>
         $('.menu-item').on('click', function() {
