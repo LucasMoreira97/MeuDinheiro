@@ -3,6 +3,7 @@
 require_once __DIR__ . '../../autoload.php'; 
 
 use Controllers\UserSession;
+use Controllers\ExpensesController;
 
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -18,8 +19,14 @@ switch ($uri) {
             $controller = new UserSession();
             $controller->login();
         } else {
-            // Exibir formulário de login ou tratar GET de outra forma
+           //Tratar erro, caso ocorra
         }
+        break;
+    
+    case '/expenses':
+        $data = json_decode(file_get_contents('php://input'), true);
+        $response = (new ExpensesController)->controller($data);
+        echo json_encode($response);
         break;
 
 }

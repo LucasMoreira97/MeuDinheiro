@@ -1,10 +1,10 @@
 <?php
-// session_start();
+session_start();
 
-// if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//     header("Location: index.php");
-//     exit;
-// }
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("Location: index.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,57 +23,8 @@
 <body>
 
     <div class="home">
-
-
-
-
-
-        <div class="page" id="home-page">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-
+        <div class="page" id="home-page"></div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="bottom-menu">
         <div class="menu-item active general">
@@ -108,6 +59,7 @@
     <script src="./js/Home.js"></script>
     <script src="./js/Generic.js"></script>
     <script src="./js/ShowElement.js"></script>
+    <script src="./js/DataService.js"></script>
 
     <script>
         $('.menu-item').on('click', function() {

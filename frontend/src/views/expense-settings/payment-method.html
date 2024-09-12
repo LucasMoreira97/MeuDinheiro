@@ -24,8 +24,8 @@
             </div>
 
             <div class="item-group">
-                <label for="maximum_installment">Parcelamento máximo</label>
-                <input type="number" id="maximum_installment" name="maximum_installment">
+                <label for="maximum-installment">Parcelamento máximo</label>
+                <input type="number" id="maximum-installment" name="maximum-installment">
             </div>
 
             <div class="item-group">
@@ -36,24 +36,12 @@
                 </select>
             </div>
 
-            <button class="save-button" onclick="showelement.savePaymentMethod()">Salvar</button>
+            <button class="save-button" onclick="dataservice.savePaymentMethod()">Salvar</button>
         </div>
 
         <div class="list" id="list-payment-methods">
             <div class="info">Altere as informações quando desejar</div>
-            <ul>
-
-                 <!-- Simulação apenas para testes -->
-                <li class="item">
-                    <span class="info">Cartão de crédito Itaú</span>
-                    <span class="info">Crédito</span>
-                    <span class="info">Parcelamento máximo 5x</span>
-                    <span class="info edit" onclick="showelement.test()">Editar</span>
-                    <!-- Função chamada apenas para testes -->
-                    <span class="info remove">Remover</span>
-
-                </li>
-            </ul>
+            <ul></ul>
         </div>
 
     </div>

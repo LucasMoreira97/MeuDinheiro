@@ -89,4 +89,17 @@ class Users extends DB{
         return false;
     }
 
+    /*11/09/2024*/
+    public function userId($email){
+
+        $sql = 'SELECT id FROM users WHERE email = :email';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        $user_id = $stmt->fetchColumn();
+
+        return $user_id;
+    }
+
 }

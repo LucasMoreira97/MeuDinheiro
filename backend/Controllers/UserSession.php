@@ -25,13 +25,18 @@ class UserSession
             echo json_encode(['success' => false, 'message' => 'Senha não fornecida']);
         }
 
-        $auth_status = (new Users)->loginUser($email, $password);
+        $users = new Users;
+        $auth_status = $users->loginUser($email, $password);
+        $user_id = $users->userId($email);
+
 
         switch ($auth_status) {
 
             case 'authenticated_user':
                 $_SESSION['loggedin'] = true;
                 $_SESSION['email'] = $email;
+                $_SESSION['user_id'] = $user_id;
+
                 $response = ['success' => true];
                 break;
 
@@ -45,5 +50,6 @@ class UserSession
         }
 
         echo json_encode($response);
+        //return $response;
     }
 }
