@@ -32,6 +32,8 @@ class Home {
                 break;
 
             case 'payment-type':
+                var dataservice = new DataService;
+                dataservice.listPaymentType();
                 $('#home-page').load('../src/views/expense-settings/payment-type.html');
                 break;
 

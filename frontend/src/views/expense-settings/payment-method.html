@@ -12,7 +12,7 @@
             cartões. Apenas atribua um nome à sua forma de pagamento, como 'Cartão de crédito Itaú', e selecione o tipo,
             por exemplo, 'Futuro'.</p>
 
-        <button class="add-button" onclick="showelement.addPaymentMethod()">
+        <button class="add-button" onclick="showelement.showAdd('payment-method')">
             Adicionar
             <span class="icon">+</span>
         </button>
@@ -39,7 +39,7 @@
             <button class="save-button" id="save-payment-method" method_id="0" onclick="dataservice.savePaymentMethod(this.id)">Salvar</button>
         </div>
 
-        <div class="list" id="list-payment-methods">
+        <div class="list" id="list-payment-method">
             <div class="info">Altere as informações quando desejar</div>
             <ul></ul>
         </div>

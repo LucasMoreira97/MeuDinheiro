@@ -1,55 +1,22 @@
 class ShowElement {
 
 
-    addPaymentMethod() {
-        $('#add-payment-method #name').val();
-        $('#add-payment-method #maximum_installment').val();
+    //Used for Payment type, method, category.
+    showAdd(origin) {
+        $('#add-' + origin + '#name').val();
+        $('#add-' + origin + ' #maximum_installment').val();
         $('.add-button').hide();
-        $('#add-payment-method').css('display', 'flex');
-        $('#list-payment-methods').hide();
+        $('#add-' + origin).css('display', 'flex');
+        $('#list-' + origin).hide();
     }
 
-    savePaymentMethod() {
-        $('#add-payment-method #name').val();
-        $('#add-payment-method #maximum_installment').val();
+    hideAdd(origin){
+        $('#add-' + origin + ' #name').val();
+        // $('#add-' + origin + ' #maximum_installment').val();
         $('.add-button').show();
-        $('#add-payment-method').css('display', 'none');
-        $('#list-payment-methods').show();
+        $('#add-' + origin).css('display', 'none');
+        $('#list-' + origin).show();
     }
-
-
-    test() {
-        $('.add-button').hide();
-        $('#add-payment-method').css('display', 'flex');
-        $('#list-payment-methods').hide();
-        $('#name').val('Cartão de crédito itaú');
-        $('#maximum_installment').val(8);
-
-    }
-
-    test2() {
-        $('.add-button').hide();
-        $('#add-payment-category').css('display', 'flex');
-        $('#list-payment-category').hide();
-        $('#name').val('Transporte');
-    }
-
-
-    addCategory() {
-        $('#add-payment-category #name').val();
-        $('.add-button').hide();
-        $('#add-payment-category').css('display', 'flex');
-        $('#list-payment-category').hide();
-    }
-
-    saveCategory() {
-        $('#add-payment-category #name').val();
-
-        $('.add-button').show();
-        $('#add-payment-category').css('display', 'none');
-        $('#list-payment-category').show();
-    }
-
 
     addRecurrence() {
         $('.add-button').hide();
@@ -62,9 +29,6 @@ class ShowElement {
         $('#add-income-recurrence').css('display', 'none');
         $('#list-income-recurrence').show();
     }
-
-
-
 
 }
 

@@ -6,6 +6,7 @@ session_start();
 
 use Models\PaymentMethod;
 use Models\PaymentCategory;
+use Models\PaymentType;
 
 class ExpensesController
 {
@@ -41,7 +42,7 @@ class ExpensesController
                 $response = (new PaymentMethod)->removePaymentMethod($data['method_id']);
                 break;
             
-                //Payment categories
+            //Payment categories
             case 'save_payment_category':
                 if ($data['category_id'] > 0) {
                     $response = (new PaymentCategory)->editPaymentCategory($data['category_id'], $data);
@@ -62,6 +63,29 @@ class ExpensesController
 
             case 'remove_payment_category':
                 $response = (new PaymentCategory)->removePaymentCategory($data['category_id']);
+                break;
+
+            //Payment types
+            case 'save_payment_type':
+                if ($data['type_id'] > 0) {
+                    $response = (new PaymentType)->editPaymentType($data['type_id'], $data);
+                } else {
+                    $response = (new PaymentType)->newPaymentType($data, $user_id);
+                }
+
+                break;
+
+            case 'list_payment_type':
+                $response = (new PaymentType)->listPaymentType();
+                break;
+
+            case 'data_payment_type':
+                $payment_type = (new PaymentType)->listPaymentType($data['type_id']);
+                $response = $payment_type[0];
+                break;
+
+            case 'remove_payment_type':
+                $response = (new PaymentType)->removePaymentType($data['type_id']);
                 break;
         }
 

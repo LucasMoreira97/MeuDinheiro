@@ -1,4 +1,4 @@
-<div class="payment-category"></div>
+<div class="payment-type">
 
     <div class="container">
 
@@ -8,36 +8,28 @@
             <li><span>Tipos</span></li>
         </ul>
 
-        <p class="info">Adicione aqui os seus tipos de despesas, como despesas diárias, emergências, gastos fixos, entre outras.</p>
+        <p class="info">Adicione aqui os seus tipos de despesas, como despesas diárias, emergências, gastos fixos, entre
+            outras.</p>
 
-        <button class="add-button" onclick="showelement.addCategory()">
+        <button class="add-button" onclick="showelement.showAdd('payment-type')">
             Adicionar
             <span class="icon">+</span>
         </button>
 
-        <div class="component" id="add-payment-category">
+        <div class="component" id="add-payment-type">
             <div class="item-group">
                 <label for="name">nome</label>
                 <input type="text" id="name" name="name">
             </div>
 
             <div class="full-line">
-                <button class="save-button" onclick="showelement.saveCategory()">Salvar</button>
+                <button class="save-button" id="save-payment-type" type_id="0" onclick="dataservice.savePaymentType()">Salvar</button>
             </div>
         </div>
 
-        <div class="list" id="list-payment-category">
+        <div class="list" id="list-payment-type">
             <div class="info">Altere as informações quando desejar</div>
-            <ul>
-
-                 <!-- Simulação apenas para testes -->
-                <li class="item">
-                    <span class="info">Gastos fixos</span>
-                    <span class="info edit" onclick="showelement.test2()">Editar</span>
-                    <span class="info remove">Remover</span>
-                </li>
-
-            </ul>
+            <ul></ul>
         </div>
 
     </div>

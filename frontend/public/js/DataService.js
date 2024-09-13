@@ -10,6 +10,8 @@ class DataService {
         const installment = $paymentMethod.find('#maximum-installment').val();
         const type = $paymentMethod.find('#payment-type').val();
 
+        $paymentMethod.find('input').val('');
+
         if (name && installment && type) {
 
             const uri = '/MagicMoney/backend/router.php/expenses';
@@ -33,12 +35,7 @@ class DataService {
         }
 
         this.listPaymentMethod();
-
-        $paymentMethod.find('input').val('');
-        $paymentMethod.find('.add-button').show();
-        $paymentMethod.find('#add-payment-method').css('display', 'none');
-        $paymentMethod.find('#list-payment-methods').show();
-
+        showelement.hideAdd('payment-method');
     }
 
     async listPaymentMethod() {
@@ -74,9 +71,7 @@ class DataService {
             `;
         });
 
-        $('#list-payment-methods ul').html(payment_methods);
-
-        console.log(data);
+        $('#list-payment-method ul').html(payment_methods);
     }
 
     async editPaymentMethod(method_id){
@@ -91,10 +86,7 @@ class DataService {
         $paymentMethod.find('#maximum-installment').val(data.maximum_installment);
         $paymentMethod.find('#payment-type').val(data.type);
 
-        $paymentMethod.find('.add-button').hide();
-        $paymentMethod.find('#add-payment-method').css('display', 'flex');
-        $paymentMethod.find('#list-payment-methods').hide();
-
+        showelement.showAdd('payment-method');
     }
 
     async dataPaymentMethod(method_id){
@@ -145,6 +137,7 @@ class DataService {
 
         const $paymentCategory = $('.payment-category');
         const name = $paymentCategory.find('#name').val();
+        $paymentCategory.find('input').val('');
 
         if (name) {
 
@@ -169,11 +162,7 @@ class DataService {
         }
 
         this.listPaymentCategory();
-
-        $paymentCategory.find('input').val('');
-        $paymentCategory.find('.add-button').show();
-        $paymentCategory.find('#add-payment-category').css('display', 'none');
-        $paymentCategory.find('#list-payment-category').show();
+        showelement.hideAdd('payment-category');
     }
 
     async listPaymentCategory() {
@@ -260,6 +249,129 @@ class DataService {
         console.log(data);
 
         this.listPaymentCategory();
+
+        alert('removido com sucesso');
+    }
+
+    //Payment types
+    async savePaymentType() {
+
+        var type_id = $('#save-payment-type').attr('type_id');
+
+        const $paymentType = $('.payment-type');
+        const name = $paymentType.find('#name').val();
+        $paymentType.find('input').val('');
+
+        if (name) {
+
+            const uri = '/MagicMoney/backend/router.php/expenses';
+            const response = await fetch(uri, {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({
+                    type_id: type_id, name: name, operation: 'save_payment_type'
+                })
+            });
+        
+            const data = await response.json();
+            console.log(data);
+        
+            // Preciso configurar as mensagens de erro.
+            if(data.success == true){
+                alert('salvo com sucesso')
+            }else{
+                alert('erro ao salvar');
+            }
+        }
+
+        this.listPaymentType();
+        showelement.hideAdd('payment-type');
+    }
+
+    async listPaymentType() {
+
+        const uri = '/MagicMoney/backend/router.php/expenses';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                operation: 'list_payment_type'
+            })
+        });
+
+        const data = await response.json();
+        var payment_type = '';
+        
+        data.map(type => {
+
+            payment_type += `
+                <li class="item" id='type-id-${type.id}'>
+                    <span class="info">${type.name}</span>
+                    <span class="info edit" onclick="dataservice.editPaymentType(${type.id})">Editar</span>
+                    <span class="info remove" onclick="dataservice.removePaymentType(${type.id})">Remover</span>
+                </li>
+            `;
+        });
+
+        $('#list-payment-type ul').html(payment_type);
+
+        console.log(data);
+    }
+
+    async editPaymentType(type_id){
+
+        $('#add-payment-type .save-button').attr('type_id', type_id);
+
+        const data = await this.dataPaymentType(type_id);
+
+        const $paymentType = $('.payment-type');
+
+        $paymentType.find('#name').val(data.name);
+        $paymentType.find('#maximum-installment').val(data.maximum_installment);
+        $paymentType.find('#payment-type').val(data.type);
+
+        $paymentType.find('.add-button').hide();
+        $paymentType.find('#add-payment-type').css('display', 'flex');
+        $paymentType.find('#list-payment-type').hide();
+    }
+
+    async dataPaymentType(type_id){
+
+        const uri = '/MagicMoney/backend/router.php/expenses';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                type_id: type_id,
+                operation: 'data_payment_type'
+            })
+        });
+
+        const data = await response.json();
+        
+        return data;
+    }
+
+    async removePaymentType(type_id){
+
+        console.log(type_id);
+        
+        const uri = '/MagicMoney/backend/router.php/expenses';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                type_id: type_id,
+                operation: 'remove_payment_type'
+            })
+        });
+
+        //Tratar erros
+        const data = await response.json();
+
+        console.log(data);
+
+        this.listPaymentType();
 
         alert('removido com sucesso');
     }
