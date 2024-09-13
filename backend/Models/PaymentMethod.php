@@ -39,15 +39,15 @@ class PaymentMethod extends DB
         }
     }
 
-    public function listPaymentMethods($name = null) {
+    public function listPaymentMethods($method_id = null) {
         $sql = 'SELECT id, name, maximum_installment, type FROM payment_methods WHERE removed = 0 ';
-        $sql .= $name ? ' AND name = :name' : '';
+        $sql .= $method_id ? ' AND id = :method_id' : '';
         $sql .= ' ORDER BY id DESC';
     
         $stmt = $this->db->prepare($sql);
     
-        if ($name) {
-            $stmt->bindValue(':name', $name);
+        if ($method_id) {
+            $stmt->bindValue(':method_id', $method_id);
         }
     
         $stmt->execute();
@@ -64,5 +64,33 @@ class PaymentMethod extends DB
         return $stmt->rowCount() > 0 ? true : false;
     }
 
+    public function editPaymentMethod($method_id, $data){
+
+        $sql = 'UPDATE payment_methods SET name = :name, maximum_installment = :installment, type = :type WHERE id = :method_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':name', $data['name']);
+        $stmt->bindParam(':installment', $data['installment']);
+        $stmt->bindParam(':type', $data['type']);
+        $stmt->bindParam(':method_id', $method_id);
+        $stmt->execute();
+
+        if($stmt->rowCount() > 0){
+            return ['success' => true, 'message' => 'Método de pagamento editado com sucesso!'];
+        }else{
+            return ['success' => false, 'message' => 'Erro ao atualizar método de pagamento'];
+        }
+    }
+
+    public function removePaymentMethod($method_id){
+
+        $sql = 'UPDATE payment_methods SET removed = 1 WHERE id = :method_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':method_id', $method_id);
+        
+        if($stmt->rowCount() > 0){
+            return ['success' => false, 'message' => 'Método de pagamento removido com sucesso!'];
+        }
+
+    }
 
 }

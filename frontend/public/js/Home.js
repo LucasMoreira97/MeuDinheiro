@@ -1,6 +1,6 @@
 class Home {
 
-    loadPage(page) {
+    async loadPage(page) {
 
         switch (page) {
 
@@ -20,6 +20,8 @@ class Home {
                 break;
 
             case 'payment-method':
+                var dataservice = new DataService;
+                dataservice.listPaymentMethod();
                 $('#home-page').load('../src/views/expense-settings/payment-method.html');
                 break;
 

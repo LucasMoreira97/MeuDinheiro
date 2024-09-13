@@ -74,7 +74,7 @@
     gap: var(--spacing);
 }
 
-.full-line{
+.full-line {
     width: 100%;
 }
 
@@ -157,6 +157,14 @@
     justify-content: flex-end;
     margin-right: 2vh;
     width: 100%;
+}
+
+.list ul {
+    max-height: 30vh;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
 }
 
 /* Save Button */
@@ -509,6 +517,7 @@
 .submenu-income img {
     background-color: var(--vibrant-green);
 }
+
 /* Submenu - end */
 
 .container .info {
@@ -573,7 +582,7 @@
 
 /* List - ini*/
 
-.container .list{
+.container .list {
     width: 100%;
 }
 
@@ -659,6 +668,10 @@
 
     .container .add-button .icon {
         margin-bottom: 0.7vh;
+    }
+
+    .list ul{
+        max-width: 400vh;
     }
 }
 
