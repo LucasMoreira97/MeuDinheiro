@@ -86,9 +86,13 @@ class PaymentMethod extends DB
         $sql = 'UPDATE payment_methods SET removed = 1 WHERE id = :method_id';
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':method_id', $method_id);
+        $stmt->execute();
         
         if($stmt->rowCount() > 0){
-            return ['success' => false, 'message' => 'Método de pagamento removido com sucesso!'];
+            return ['success' => true, 'message' => 'Método de pagamento removido com sucesso!'];
+        }else{
+
+            return ['success' => false, 'message' => 'Error ao remover Método de pagamento.'];
         }
 
     }

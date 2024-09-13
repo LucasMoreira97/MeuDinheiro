@@ -1,4 +1,4 @@
-<div class="payment-category"></div>
+<div class="payment-category">
 
     <div class="container">
 
@@ -22,7 +22,7 @@
             </div>
 
             <div class="full-line">
-                <button class="save-button" onclick="showelement.saveCategory()">Salvar</button>
+                <button class="save-button" id="save-payment-category" category_id="0" onclick="dataservice.savePaymentCategory()">Salvar</button>
             </div>
             
 
@@ -30,16 +30,7 @@
 
         <div class="list" id="list-payment-category">
             <div class="info">Altere as informações quando desejar</div>
-            <ul>
-
-                 <!-- Simulação apenas para testes -->
-                <li class="item">
-                    <span class="info">Alimentação</span>
-                    <span class="info edit" onclick="showelement.test2()">Editar</span>
-                    <span class="info remove">Remover</span>
-                </li>
-
-            </ul>
+            <ul></ul>
         </div>
 
     </div>

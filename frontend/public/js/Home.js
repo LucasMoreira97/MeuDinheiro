@@ -26,6 +26,8 @@ class Home {
                 break;
 
             case 'payment-category':
+                var dataservice = new DataService;
+                dataservice.listPaymentCategory();
                 $('#home-page').load('../src/views/expense-settings/payment-category.html');
                 break;
 
