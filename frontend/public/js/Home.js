@@ -15,10 +15,12 @@ class Home {
                 $('#home-page').load('../src/views/settings/profile.html');
                 break;
 
+            //Expenses
             case 'settings-expenses':
                 $('#home-page').load('../src/views/settings/expenses.html');
                 break;
 
+            //Expenses
             case 'payment-method':
                 var dataservice = new DataService;
                 dataservice.listPaymentMethod();
@@ -37,11 +39,14 @@ class Home {
                 $('#home-page').load('../src/views/expense-settings/payment-type.html');
                 break;
 
+            //Income
             case 'settings-income':
                 $('#home-page').load('../src/views/settings/income.html');
                 break;
 
             case 'income-recurrence':
+                var dataservice = new DataService;
+                dataservice.listIncomeRecurrence();
                 $('#home-page').load('../src/views/income-settings/income-recurrence.html');
                 break;
 

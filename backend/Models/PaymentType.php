@@ -54,7 +54,7 @@ class PaymentType extends DB
 
     private function previouslyRegistered($name) {
 
-        $sql = 'SELECT name FROM outflows_types WHERE name = :name LIMIT 1';
+        $sql = 'SELECT name FROM outflows_types WHERE name = :name  AND removed = 0 LIMIT 1';
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':name', $name);
         $stmt->execute();

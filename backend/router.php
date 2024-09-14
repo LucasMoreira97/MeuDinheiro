@@ -23,6 +23,7 @@ switch ($uri) {
         }
         break;
     
+    case '/income':    
     case '/expenses':
         $data = json_decode(file_get_contents('php://input'), true);
         $response = (new ExpensesController)->controller($data);

@@ -7,6 +7,7 @@ session_start();
 use Models\PaymentMethod;
 use Models\PaymentCategory;
 use Models\PaymentType;
+use Models\IncomeRecurrence;
 
 class ExpensesController
 {
@@ -86,6 +87,28 @@ class ExpensesController
 
             case 'remove_payment_type':
                 $response = (new PaymentType)->removePaymentType($data['type_id']);
+                break;
+
+            //Income recurrence
+            case 'save-income-recurrence':
+                if ($data['recurrence_id'] > 0) {
+                    $response = (new IncomeRecurrence)->editIncomeRecurrence($data['recurrence_id'], $data);
+                } else {
+                    $response = (new IncomeRecurrence)->newIncomeRecurrence($data, $user_id);
+                }
+                break;
+
+            case 'list_income_recurrence':
+                $response = (new IncomeRecurrence)->listIncomeRecurrence();
+                break;
+
+            case 'data_income_recurrence':
+                $income_recurrence = (new IncomeRecurrence)->listIncomeRecurrence($data['recurrence_id']);
+                $response = $income_recurrence[0];
+                break;
+
+            case 'remove_income_recurrence':
+                $response = (new IncomeRecurrence)->removeIncomeRecurrence($data['recurrence_id']);
                 break;
         }
 

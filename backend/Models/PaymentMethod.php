@@ -56,7 +56,7 @@ class PaymentMethod extends DB
 
     private function previouslyRegistered($name) {
 
-        $sql = 'SELECT name FROM payment_methods WHERE name = :name LIMIT 1';
+        $sql = 'SELECT name FROM payment_methods WHERE name = :name  AND removed = 0 LIMIT 1';
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':name', $name);
         $stmt->execute();

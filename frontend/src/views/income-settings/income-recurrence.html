@@ -1,52 +1,43 @@
-<div class="payment-category"></div>
+<div class="income-recurrence">
 
-<div class="container">
+    <div class="container">
 
-    <ul class="breadcrumb">
-        <li><span class="first" onclick="home.loadPage('settings')">Ajustes</span></li>
-        <li><span onclick="home.loadPage('settings-income')">Receitas</span></li>
-        <li><span>Recorrência</span></li>
-    </ul>
-
-    <p class="info">Adicione aqui as recorrências de suas receitas, como anual, mensal, diária, entre outras.</p>
-
-    <button class="add-button" onclick="showelement.addRecurrence()">
-        Adicionar
-        <span class="icon">+</span>
-    </button>
-
-    <div class="component" id="add-income-recurrence">
-
-        <div class="item-group">
-            <label for="name">nome</label>
-            <input type="text" id="name" name="name">
-        </div>
-
-        <div class="item-group">
-            <label for="days">Quantidade de dias da recorrência</label>
-            <input type="number" id="days" name="days">
-        </div>
-
-        <div class="full-line">
-            <button class="save-button" onclick="showelement.saveRecurrence()">Salvar</button>
-        </div>
-    </div>
-
-    <div class="list" id="list-income-recurrence">
-        <div class="info">Altere as informações quando desejar</div>
-
-        <ul>
-            <!-- Simulação apenas para testes -->
-            <li class="item">
-                <span class="info">Dia a dia</span>
-                <span class="info">15</span>
-                <span class="info edit" onclick="showelement.test3()">Editar</span>
-                <span class="info remove">Remover</span>
-            </li>
+        <ul class="breadcrumb">
+            <li><span class="first" onclick="home.loadPage('settings')">Ajustes</span></li>
+            <li><span onclick="home.loadPage('settings-income')">Receitas</span></li>
+            <li><span>Recorrência</span></li>
         </ul>
-        
-    </div>
 
-</div>
+        <p class="info">Adicione aqui as recorrências de suas receitas, como anual, mensal, diária, entre outras.</p>
+
+        <button class="add-button" onclick="showelement.addRecurrence()">
+            Adicionar
+            <span class="icon">+</span>
+        </button>
+
+        <div class="component" id="add-income-recurrence">
+
+            <div class="item-group">
+                <label for="name">nome</label>
+                <input type="text" id="name" name="name">
+            </div>
+
+            <div class="item-group">
+                <label for="recurrence-in-days">Quantidade de dias da recorrência</label>
+                <input type="number" id="recurrence-in-days" name="recurrence-in-days">
+            </div>
+
+            <div class="full-line">
+                <button class="save-button" id="save-income-recurrence" recurrence_id="0"
+                    onclick="dataservice.saveIncomeRecurrence()">Salvar</button>
+            </div>
+        </div>
+
+        <div class="list" id="list-income-recurrence">
+            <div class="info">Altere as informações quando desejar</div>
+            <ul></ul>
+        </div>
+
+    </div>
 
 </div>

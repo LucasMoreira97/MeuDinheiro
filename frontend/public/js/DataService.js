@@ -1,5 +1,6 @@
 class DataService {
 
+    //AJUSTAR DESPESAS
     async savePaymentMethod() {
 
         var method_id = $('#save-payment-method').attr('method_id');
@@ -22,14 +23,14 @@ class DataService {
                     method_id: method_id, name: name, installment: installment, type: type, operation: 'save_payment_method'
                 })
             });
-        
+
             const data = await response.json();
             console.log(data);
-        
+
             // Preciso configurar as mensagens de erro.
-            if(data.success == true){
+            if (data.success == true) {
                 alert('salvo com sucesso')
-            }else{
+            } else {
                 alert('erro ao salvar');
             }
         }
@@ -51,12 +52,12 @@ class DataService {
 
         const data = await response.json();
         var payment_methods = '';
-        
+
         data.map(methods => {
 
-            if(methods.type == 'credit'){
+            if (methods.type == 'credit') {
                 var payment_type = 'Crédito'
-            }else{
+            } else {
                 var payment_type = 'Imediato';
             }
 
@@ -74,7 +75,7 @@ class DataService {
         $('#list-payment-method ul').html(payment_methods);
     }
 
-    async editPaymentMethod(method_id){
+    async editPaymentMethod(method_id) {
 
         $('#add-payment-method .save-button').attr('method_id', method_id);
 
@@ -89,7 +90,7 @@ class DataService {
         showelement.showAdd('payment-method');
     }
 
-    async dataPaymentMethod(method_id){
+    async dataPaymentMethod(method_id) {
 
         const uri = '/MagicMoney/backend/router.php/expenses';
         const response = await fetch(uri, {
@@ -102,14 +103,14 @@ class DataService {
         });
 
         const data = await response.json();
-        
+
         return data;
     }
 
-    async removePaymentMethod(method_id){
+    async removePaymentMethod(method_id) {
 
         console.log(method_id);
-        
+
         const uri = '/MagicMoney/backend/router.php/expenses';
         const response = await fetch(uri, {
             method: 'POST',
@@ -149,14 +150,14 @@ class DataService {
                     category_id: category_id, name: name, operation: 'save_payment_category'
                 })
             });
-        
+
             const data = await response.json();
             console.log(data);
-        
+
             // Preciso configurar as mensagens de erro.
-            if(data.success == true){
+            if (data.success == true) {
                 alert('salvo com sucesso')
-            }else{
+            } else {
                 alert('erro ao salvar');
             }
         }
@@ -178,7 +179,7 @@ class DataService {
 
         const data = await response.json();
         var payment_category = '';
-        
+
         data.map(category => {
 
             payment_category += `
@@ -195,7 +196,7 @@ class DataService {
         console.log(data);
     }
 
-    async editPaymentCategory(category_id){
+    async editPaymentCategory(category_id) {
 
         $('#add-payment-category .save-button').attr('category_id', category_id);
 
@@ -212,7 +213,7 @@ class DataService {
         $paymentCategory.find('#list-payment-category').hide();
     }
 
-    async dataPaymentCategory(category_id){
+    async dataPaymentCategory(category_id) {
 
         const uri = '/MagicMoney/backend/router.php/expenses';
         const response = await fetch(uri, {
@@ -225,14 +226,14 @@ class DataService {
         });
 
         const data = await response.json();
-        
+
         return data;
     }
 
-    async removePaymentCategory(category_id){
+    async removePaymentCategory(category_id) {
 
         console.log(category_id);
-        
+
         const uri = '/MagicMoney/backend/router.php/expenses';
         const response = await fetch(uri, {
             method: 'POST',
@@ -272,14 +273,14 @@ class DataService {
                     type_id: type_id, name: name, operation: 'save_payment_type'
                 })
             });
-        
+
             const data = await response.json();
             console.log(data);
-        
+
             // Preciso configurar as mensagens de erro.
-            if(data.success == true){
+            if (data.success == true) {
                 alert('salvo com sucesso')
-            }else{
+            } else {
                 alert('erro ao salvar');
             }
         }
@@ -301,7 +302,7 @@ class DataService {
 
         const data = await response.json();
         var payment_type = '';
-        
+
         data.map(type => {
 
             payment_type += `
@@ -318,7 +319,7 @@ class DataService {
         console.log(data);
     }
 
-    async editPaymentType(type_id){
+    async editPaymentType(type_id) {
 
         $('#add-payment-type .save-button').attr('type_id', type_id);
 
@@ -335,7 +336,7 @@ class DataService {
         $paymentType.find('#list-payment-type').hide();
     }
 
-    async dataPaymentType(type_id){
+    async dataPaymentType(type_id) {
 
         const uri = '/MagicMoney/backend/router.php/expenses';
         const response = await fetch(uri, {
@@ -348,14 +349,14 @@ class DataService {
         });
 
         const data = await response.json();
-        
+
         return data;
     }
 
-    async removePaymentType(type_id){
+    async removePaymentType(type_id) {
 
         console.log(type_id);
-        
+
         const uri = '/MagicMoney/backend/router.php/expenses';
         const response = await fetch(uri, {
             method: 'POST',
@@ -376,7 +377,130 @@ class DataService {
         alert('removido com sucesso');
     }
 
+    // AJUSTAR RECEITAS
+    async saveIncomeRecurrence() {
 
+        var recurrence_id = $('#save-income-recurrence').attr('recurrence_id');
+
+        const $incomeRecurrence = $('.income-recurrence');
+
+        const name = $incomeRecurrence.find('#name').val();
+        const recurrence_in_days = $incomeRecurrence.find('#recurrence-in-days').val();
+
+        console.log('Name: ' + name, 'recurrence-in-days: ' + recurrence_in_days);
+
+        $incomeRecurrence.find('input').val('');
+
+        if (name) {
+
+            const uri = '/MagicMoney/backend/router.php/income';
+            const response = await fetch(uri, {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({
+                    recurrence_id: recurrence_id, recurrence_in_days: recurrence_in_days, name: name, operation: 'save-income-recurrence'
+                })
+            });
+
+            const data = await response.json();
+            console.log(data);
+
+            // Preciso configurar as mensagens de erro.
+            if (data.success == true) {
+                alert('salvo com sucesso')
+            } else {
+                alert('erro ao salvar');
+            }
+        }
+
+        this.listIncomeRecurrence();
+        showelement.hideAdd('income-recurrence');
+    }
+
+    async listIncomeRecurrence() {
+
+        const uri = '/MagicMoney/backend/router.php/income';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                operation: 'list_income_recurrence'
+            })
+        });
+
+        const data = await response.json();
+        var income_recurrence = '';
+
+        data.map(recurrence => {
+
+            income_recurrence += `
+                <li class="item" id='recurrence-id-${recurrence.id}'>
+                    <span class="info">${recurrence.name}</span>
+                    <span class="info">${recurrence.recurrence_in_days} dias</span>
+                    <span class="info edit" onclick="dataservice.editIncomeRecurrence(${recurrence.id})">Editar</span>
+                    <span class="info remove" onclick="dataservice.removeIncomeRecurrence(${recurrence.id})">Remover</span>
+                </li>
+            `;
+        });
+
+        $('#list-income-recurrence ul').html(income_recurrence);
+
+        console.log(data);
+    }
+
+    async editIncomeRecurrence(recurrence_id) {
+
+        $('#add-income-recurrence .save-button').attr('recurrence_id', recurrence_id);
+
+        const data = await this.dataIncomeRecurrence(recurrence_id);
+
+        const $incomeRecurrence = $('.income-recurrence');
+
+        $incomeRecurrence.find('#name').val(data.name);
+        $incomeRecurrence.find('#recurrence-in-days').val(data.recurrence_in_days);
+
+        $incomeRecurrence.find('.add-button').hide();
+        $incomeRecurrence.find('#add-income-recurrence').css('display', 'flex');
+        $incomeRecurrence.find('#list-income-recurrence').hide();
+    }
+
+    async dataIncomeRecurrence(recurrence_id) {
+
+        const uri = '/MagicMoney/backend/router.php/expenses';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                recurrence_id: recurrence_id,
+                operation: 'data_income_recurrence'
+            })
+        });
+
+        const data = await response.json();
+
+        return data;
+    }
+
+    async removeIncomeRecurrence(recurrence_id) {
+
+        const uri = '/MagicMoney/backend/router.php/income';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                recurrence_id: recurrence_id,
+                operation: 'remove_income_recurrence'
+            })
+        });
+
+        //Tratar erros
+        const data = await response.json();
+
+        console.log(data);
+        this.listIncomeRecurrence();
+
+        alert('removido com sucesso');
+    }
 
 }
 
