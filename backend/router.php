@@ -45,6 +45,11 @@ switch ($uri) {
             $response = (new GenericController)->controller($data);
             echo json_encode($response);
         }
+        break;
 
+    case '/general':
+        $data = json_decode(file_get_contents('php://input'), true);
+        $response = (new GenericController)->controller($data);
+        echo json_encode($response);
         break;
 }

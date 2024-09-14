@@ -1,0 +1,40 @@
+<div class="managment-group">
+
+    <div class="container">
+
+        <ul class="breadcrumb">
+            <li><span class="first" onclick="home.loadPage('settings')">Ajustes</span></li>
+            <li><span onclick="home.loadPage('settings-general')">Geral</span></li>
+            <li><span>Meu grupo de gerenciamento</span></li>
+        </ul>
+
+        <p class="info">Inclua os membros da sua família que fazem parte do seu cotidiano. Dessa maneira, vocês
+            compartilharão informações financeiras e poderão gerenciar a saúde financeira juntos.</p>
+
+        <button class="add-button" onclick="showelement.showAdd('managment-group')">
+            Adicionar
+            <span class="icon">+</span>
+        </button>
+
+        <div class="component" id="add-managment-group">
+            <div class="item-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+            </div>
+
+            <div class="full-line">
+                <button class="save-button" id="save-managment-group" group_id="0"
+                    onclick="dataservice.saveManagmentGroup()">Salvar</button>
+            </div>
+
+
+        </div>
+
+        <div class="list" id="list-managment-group">
+            <div class="info">Membros adicionados</div>
+            <ul>Ainda não há ninguém aqui</ul> <!-- Mensagem temporaria -->
+        </div>
+
+    </div>
+
+</div>

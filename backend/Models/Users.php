@@ -80,7 +80,7 @@ class Users extends DB
     private function findUserByEmail($email)
     {
 
-        $sql = 'SELECT id FROM users WHERE email = :email LIMIT 1';
+        $sql = 'SELECT id FROM users WHERE status = "active" AND email = :email LIMIT 1';
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
@@ -96,7 +96,7 @@ class Users extends DB
     public function userId($email)
     {
 
-        $sql = 'SELECT id FROM users WHERE email = :email';
+        $sql = 'SELECT id FROM users WHERE status = "active" AND email = :email';
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();

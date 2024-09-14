@@ -52,6 +52,17 @@ class Home {
                 $('#home-page').load('../src/views/income-settings/income-recurrence.html');
                 break;
 
+           //General
+            case 'settings-general':
+                $('#home-page').load('../src/views/settings/general.html');
+                break;
+
+            case 'managment-group':
+                var dataservice = new DataService;
+                dataservice.listUserGroupUsers();
+                $('#home-page').load('../src/views/general-settings/managment-group.html');
+                break;
+
         }
 
     }

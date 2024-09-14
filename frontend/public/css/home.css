@@ -518,6 +518,10 @@
     background-color: var(--vibrant-green);
 }
 
+.submenu-general img {
+    background-color: var(--vivid-red);
+}
+
 /* Submenu - end */
 
 .container .info {

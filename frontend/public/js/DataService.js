@@ -574,6 +574,103 @@ class DataService {
         alert('Perfil atualizado com sucesso!');
     }
 
+    //Ajsutes > Geral
+    async saveManagmentGroup() {
+
+        const $managmentGroup = $('.managment-group');
+        const email = $managmentGroup.find('#email').val();
+
+        $managmentGroup.find('input').val('');
+
+        if (email) {
+
+            const uri = '/MagicMoney/backend/router.php/general';
+            const response = await fetch(uri, {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({
+                    email: email, operation: 'save-managment-group'
+                })
+            });
+
+            const data = await response.json();
+            console.log(data);
+
+            // Preciso configurar as mensagens de erro.
+            if (data.success == true) {
+                alert('salvo com sucesso')
+            } else {
+                alert('erro ao salvar');
+            }
+        }
+
+        this.listUserGroupUsers();
+        showelement.hideAdd('managment-group');
+    }
+
+    async listUserGroupUsers() {
+
+        const uri = '/MagicMoney/backend/router.php/general';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                operation: 'list_user_group_users'
+            })
+        });
+
+        const data = await response.json();
+
+        var group_users = '';
+        data.map(users => {
+
+            if (users.request == 'pending') {
+                var request_status = 'Aguardando o aceite';
+            } else {
+                var request_status = 'Solicitação foi aceita';
+            }
+
+            var user_type = users.user_type == 'admin' ? 'Administrador' : 'Membro';
+
+            group_users += `
+                <li class="item" id='group-id-${users.user_id}'>
+                    <span class="info">${users.name}</span>
+                    <span class="info">${user_type}</span>
+                    <span class="info">${users.email}</span>
+                    <span class="info">${request_status}</span>
+                    <span class="info remove" onclick="dataservice.removeGroupUser(${users.user_id})">Remover</span>
+                </li>
+            `;
+        });
+
+        $('#list-managment-group ul').html(group_users);
+
+        console.log(data);
+    }
+
+    async removeGroupUser(user_id) {
+
+        console.log(user_id);
+
+        const uri = '/MagicMoney/backend/router.php/general';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                user_id: user_id,
+                operation: 'remove_group_user'
+            })
+        });
+
+        //Tratar erros
+        const data = await response.json();
+
+        console.log(data);
+        this.listUserGroupUsers();
+
+        alert('removido com sucesso');
+    }
+
 }
 
 var dataservice = new DataService;
