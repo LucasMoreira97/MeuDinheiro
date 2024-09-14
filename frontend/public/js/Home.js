@@ -12,6 +12,8 @@ class Home {
                 break;
 
             case 'settings-profile':
+                var dataservice = new DataService;
+                dataservice.userProfileData();
                 $('#home-page').load('../src/views/settings/profile.html');
                 break;
 

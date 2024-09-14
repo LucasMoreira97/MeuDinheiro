@@ -1,6 +1,6 @@
 class DataService {
 
-    //AJUSTAR DESPESAS
+    //Ajustes > Despesas > Formas de pagamento
     async savePaymentMethod() {
 
         var method_id = $('#save-payment-method').attr('method_id');
@@ -131,7 +131,7 @@ class DataService {
         alert('removido com sucesso');
     }
 
-    //Payment categories
+    //Ajustes > Despesas > Categorias
     async savePaymentCategory() {
 
         var category_id = $('#save-payment-category').attr('category_id');
@@ -254,7 +254,7 @@ class DataService {
         alert('removido com sucesso');
     }
 
-    //Payment types
+    //Ajustes > Despesas > Tipos
     async savePaymentType() {
 
         var type_id = $('#save-payment-type').attr('type_id');
@@ -377,7 +377,7 @@ class DataService {
         alert('removido com sucesso');
     }
 
-    // AJUSTAR RECEITAS
+    //Ajustes > Receitas
     async saveIncomeRecurrence() {
 
         var recurrence_id = $('#save-income-recurrence').attr('recurrence_id');
@@ -500,6 +500,78 @@ class DataService {
         this.listIncomeRecurrence();
 
         alert('removido com sucesso');
+    }
+
+    //Ajustes > Perfil
+    async userProfileData() {
+
+        const uri = '/MagicMoney/backend/router.php/profile/data';
+        const response = await fetch(uri, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        // Tratar erros
+        const data = await response.json();
+
+        console.log(data);
+
+        const $userProfile = $('.user-profile-page');
+
+        $userProfile.find('#name').val(data.name);
+        $userProfile.find('#username').val(data.username);
+        $userProfile.find('#email').val(data.email);
+        $userProfile.find('#phone').val(data.phone_number);
+        $userProfile.find('#birthdate').val(data.date_of_birth);
+
+        $userProfile.find('#user-photo-preview').attr('src', data.profile_picture);
+    }
+
+    editProfileData() {
+        const $userProfile = $('.user-profile-page');
+        const $inputs = $userProfile.find('input');
+        $inputs.prop('disabled', false);
+    }
+
+    async saveProfileData() {
+
+        const $userProfile = $('.user-profile-page');
+
+        var name = $userProfile.find('#name').val();
+        var username = $userProfile.find('#username').val();
+        var email = $userProfile.find('#email').val();
+        var phone = $userProfile.find('#phone').val();
+        var birthdate = $userProfile.find('#birthdate').val();
+        var profilePictureInput = $userProfile.find('#user-photo')[0];
+        var profilePictureFile = profilePictureInput.files[0];
+
+        const formData = new FormData();
+        formData.append('operation', 'save_user_profile_data');
+        formData.append('name', name);
+        formData.append('username', username);
+        formData.append('email', email);
+        formData.append('phone', phone);
+        formData.append('birthdate', birthdate);
+
+        if (profilePictureFile) {
+            formData.append('profile_picture', profilePictureFile);
+        }
+
+        const uri = '/MagicMoney/backend/router.php/profile';
+
+        const response = await fetch(uri, {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        if (data.profile_picture) {
+            $userProfile.find('#user-photo-preview').attr('src', data.profile_picture);
+        }
+
+        alert('Perfil atualizado com sucesso!');
     }
 
 }

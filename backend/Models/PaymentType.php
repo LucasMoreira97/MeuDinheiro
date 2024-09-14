@@ -10,9 +10,9 @@ class PaymentType extends DB
     public function newPaymentType($data, $user_id)
     {
 
-        $previouslyRegistered = $this->previouslyRegistered($data['name']);
+        $previously_registered = $this->previouslyRegistered($data['name']);
 
-        if (!$previouslyRegistered) {
+        if (!$previously_registered) {
 
             $current_time = time();
 
