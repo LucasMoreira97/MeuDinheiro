@@ -668,7 +668,47 @@ class DataService {
         console.log(data);
         this.listUserGroupUsers();
 
-        alert('removido com sucesso');
+        alert('removido com sucesso')
+    }
+
+    async updatePassword() {
+
+        const $updatePassword = $('.update-password');
+
+        const current_password = $updatePassword.find('#current-password').val();
+        const new_password = $updatePassword.find('#new-password').val();
+        const confirm_password = $updatePassword.find('#confirm-password').val();
+
+        const uri = '/MagicMoney/backend/router.php/general';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                current_password: current_password,
+                new_password: new_password,
+                confirm_password: confirm_password,
+                operation: 'update_password'
+            })
+        });
+
+        const data = await response.json();
+
+        var lock_img = `<svg id="lock" class="lock open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 512"> 
+                                    <path d="M400 224H48C21.5 224 0 245.5 0 272v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48z" fill="#C0C0C0" />
+                                    <g class="lock-shackle">
+                                        <path d="M224 0C132.3 0 60.1 72.2 60.1 163.9V224h60v-60.1C120 100.2 166.3 54 224 54s104 46.2 104 109.9V224h60v-60.1C388 72.2 315.7 0 224 0z" fill="#C0C0C0" />
+                                    </g>
+                                </svg>`;
+
+        generic.popupMessage('popup', data.message, lock_img);
+        generic.togglePopup('popup');
+
+        if (data.success) {
+            generic.toggleLock();
+        }
+
+        //preciso redirecionar para a pagina home
+
     }
 
 }

@@ -126,6 +126,20 @@ class GenericController
                 }
 
                 break;
+
+            case 'update_password':
+
+                $current_password = $data['current_password'];
+                $new_password = $data['new_password'];
+                $confirm_password = $data['confirm_password'];
+
+                if($new_password != $confirm_password){
+                    $response = ['success' => false, 'message' => 'As senhas inseridas não coincidem. Por favor, verifique e tente novamente.'];
+                    return $response;
+                }
+
+                $response = (new Users)->updatePassword($user_email, $current_password, $new_password);
+                break;
         }
 
         return $response;

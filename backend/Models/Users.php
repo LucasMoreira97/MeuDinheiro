@@ -135,7 +135,7 @@ class Users extends DB
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
 
-        if($stmt->rowCount() > 0){
+        if ($stmt->rowCount() > 0) {
             $response = ['success' => true, 'message' => 'Perfil de usuário atualizado com sucesso!'];
         }
 
@@ -164,7 +164,7 @@ class Users extends DB
                 $stmt_pdate_pic->bindParam(':user_id', $user_id);
                 $stmt_pdate_pic->execute();
 
-                if($stmt_pdate_pic->rowCount() > 0){
+                if ($stmt_pdate_pic->rowCount() > 0) {
                     $response = ['success' => true, 'message' => 'Perfil de usuário atualizado com sucesso, nova foto adicionada'];
                 }
             }
@@ -173,4 +173,48 @@ class Users extends DB
         return $response;
     }
 
+    public function updatePassword($email, $old_password, $new_password)
+    {
+
+        $sql = 'SELECT password FROM users WHERE status = "active" AND email = :email';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+
+            $password_hash = $stmt->fetchColumn();
+
+            if (password_verify($new_password, $password_hash)) {
+                return ['success' => false, 'message' => 'A nova senha não pode ser igual à senha atual. Por favor, escolha uma senha diferente.'];
+            }
+
+            if (password_verify($old_password, $password_hash)) {
+
+                $new_password_hash =  password_hash($new_password, PASSWORD_DEFAULT);
+                $current_time = time();
+
+                $sql = 'UPDATE users SET password = :password, updated_at = :current_time WHERE status = "active" AND email = :email';
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(':email', $email);
+                $stmt->bindParam(':password', $new_password_hash);
+                $stmt->bindParam(':current_time', $current_time);
+                $stmt->execute();
+
+                if ($stmt->rowCount() > 0) {
+                    $response = ['success' => true, 'message' => 'Sua senha foi atualizada com sucesso. Por favor, use a nova senha ao fazer login.'];
+                } else {
+                    $response = ['success' => false, 'message' => 'Ocorreu um erro. Por favor, faça logout e tente novamente.'];
+                }
+            } else {
+                $response = ['success' => false, 'message' => 'A senha atual está incorreta. Se você está com dificuldades para alterá-la, faça logout e clique em "Esqueci minha senha" para redefinir.'];
+            }
+        } else {
+            $response = ['success' => false, 'message' => 'Ocorreu um erro. Por favor, faça logout e tente novamente.'];
+        }
+
+        return $response;
+    }
+
+    public function sendEmail($data) {}
 }

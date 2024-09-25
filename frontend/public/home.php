@@ -53,7 +53,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </div>
     </div>
 
-    </div>
 
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/Home.js"></script>

@@ -52,7 +52,7 @@ class Home {
                 $('#home-page').load('../src/views/income-settings/income-recurrence.html');
                 break;
 
-           //General
+            //General
             case 'settings-general':
                 $('#home-page').load('../src/views/settings/general.html');
                 break;
@@ -61,6 +61,12 @@ class Home {
                 var dataservice = new DataService;
                 dataservice.listUserGroupUsers();
                 $('#home-page').load('../src/views/general-settings/managment-group.html');
+                break;
+
+            case 'update-password':
+                var dataservice = new DataService;
+                dataservice.listUserGroupUsers();
+                $('#home-page').load('../src/views/general-settings/update-password.html');
                 break;
 
         }

@@ -24,7 +24,6 @@ class Generic {
         $('#' + id).val(formatted_date);
     }
 
-
     previewUserPhoto(input) {
         var file = input.files[0];
         var reader = new FileReader();
@@ -41,6 +40,40 @@ class Generic {
         }
     }
 
+    togglePopup(popup_id) {
+        const popup = $(`#${popup_id}`);
+        popup.toggleClass('active');
+
+        $(window).on('click', function (event) {
+            if ($(event.target).is(`#${popup_id}`)) {
+                popup.removeClass('active');
+            }
+        });
+
+        $('.close-popup').on('click', function () {
+            popup.removeClass('active');
+        });
+    }
+
+    popupMessage(popup_id, message, icon) {
+        let $popup = $(`#${popup_id}`);
+        $popup.find('.popup-message').html(message);
+        $popup.find('.popup-icon').html(icon);
+    }
+
+    //Animação do cadeado do update password
+    toggleLock() {
+        const $lock = $('#lock');
+        setTimeout(() => {
+            $lock.removeClass('open').addClass('closed');
+            $('.lock path').attr('fill', '#0876FE');
+            $('.lock-shackle path').attr('fill', '#0876FE');
+        }, 500);
+    }
+
+    closePopup(){
+        $('#popup').removeClass('active');
+    }
 }
 
 
@@ -50,6 +83,13 @@ $(document).ready(function () {
     $('#user-photo').on('change', function () {
         generic.previewUserPhoto(this);
     });
+
+    $(window).on('click', function (event) {
+        if ($(event.target).is('#popup')) {
+            generic.closePopup();
+        }
+    });
+
 });
 
 // $('.menu-item').on('click', function() {

@@ -31,6 +31,11 @@
     --input-background: #eee;
     --input-radius: 8px;
 
+    /* POPUP */
+    --popup-border-radius: 12px;
+    --popup-width: 400px;
+    --popup-shadow: 0px 8px 32px rgba(0, 0, 0, 0.2);
+
     --component-radius: 20px;
     --shadow-light: 0px 8px 32px rgba(0, 0, 0, 0.2);
     --primary-color: #11111161;
@@ -621,6 +626,94 @@
 /* List - end*/
 
 
+/* popup */
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.popup-container.active {
+    display: flex;
+    opacity: 1;
+}
+
+.popup-content {
+    background-color: white;
+    width: var(--popup-width);
+    padding: 20px;
+    border-radius: var(--popup-border-radius);
+    text-align: center;
+    box-shadow: var(--popup-shadow);
+    position: relative;
+    transform: scale(0.8);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.popup-container.active .popup-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.popup-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.popup-message {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: var(--label-color);
+}
+
+.popup-close:hover {
+    color: var(--vivid-red);
+}
+
+.lock {
+    padding-left: 20px;
+    width: 95px;
+    height: 95px;
+    overflow: visible;
+}
+
+.lock path{
+    transition: fill 1s ease;
+}
+
+.lock-shackle {
+    transition: transform 1s ease;
+    transform-origin: center top;
+}
+
+.open .lock-shackle {
+    transform: rotateY(180deg);
+}
+
+.closed .lock-shackle {
+    transform: rotateY(0deg);
+}
+
 @media (max-width: 768px) {
 
     .item-group {
@@ -674,9 +767,14 @@
         margin-bottom: 0.7vh;
     }
 
-    .list ul{
+    .list ul {
         max-width: 400vh;
     }
+
+    .popup-content {
+        width: 90%;
+    }
+
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -708,3 +806,14 @@
     }
 
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
