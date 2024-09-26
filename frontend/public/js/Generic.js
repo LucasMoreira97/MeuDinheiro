@@ -71,9 +71,34 @@ class Generic {
         }, 500);
     }
 
-    closePopup(){
+    closePopup() {
         $('#popup').removeClass('active');
     }
+
+    inputsToDeleteAccount() {
+        const email_filled = $('#confirm-email').val().trim() !== "";
+        const password_filled = $('#confirm-password').val().trim() !== "";
+
+        if (email_filled && password_filled) {
+            $('#button-delete-account').removeClass('disabled-button').addClass('delete-button').prop('disabled', false);
+        } else {
+            $('#button-delete-account').removeClass('delete-button').addClass('disabled-button').prop('disabled', true);
+        }
+    }
+
+
+
+    inputsToSendFeedback() {
+        const type_feedback = $('#type-feedback').val();
+        const message_feedback = $('#message-feedback').val();
+
+        if (type_feedback && message_feedback) {
+            $('#button-send-feedback').removeClass('disabled-button').addClass('save-button').prop('disabled', false);
+        } else {
+            $('#button-send-feedback').removeClass('save-button').addClass('disabled-button').prop('disabled', true);
+        }
+    }
+
 }
 
 
@@ -91,7 +116,3 @@ $(document).ready(function () {
     });
 
 });
-
-// $('.menu-item').on('click', function() {
-//     generic.selectMenuItem();
-// });

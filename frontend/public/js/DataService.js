@@ -705,10 +705,16 @@ class DataService {
 
         if (data.success) {
             generic.toggleLock();
+            $updatePassword.find('input').val('');
         }
+    }
 
-        //preciso redirecionar para a pagina home
+    deleteAccount(){
+        alert('fazer fluxo para deletar conta');
+    }
 
+    sendFeedback(){
+        alert('fazer fluxo do feedback');
     }
 
 }

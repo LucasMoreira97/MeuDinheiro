@@ -79,6 +79,28 @@
     gap: var(--spacing);
 }
 
+.content-about {
+    margin-top: 4vh;
+}
+
+.click-here{
+    cursor: pointer;
+    color: var(--bright-blue);
+}
+
+.section-title {
+    font-style: italic;
+    font-size: 16px;
+    font-weight: bold;
+    color: #474747;
+}
+
+.section-content {
+    margin-bottom: 2.5vh;
+    font-size: 14px;
+    color: #474747;
+}
+
 .full-line {
     width: 100%;
 }
@@ -92,6 +114,17 @@
     font-size: 14px;
     color: #777;
     margin-bottom: 5px;
+}
+
+.item-group textarea {
+    border-radius: var(--input-radius);
+    padding: 1vh;
+    height: 20vh;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
 }
 
 .item-group input {
@@ -172,6 +205,18 @@
     list-style-type: none;
 }
 
+.disabled-button {
+    font-size: 14px;
+    padding: 8px 22px;
+    background-color: #a3a3a341;
+    color: var(--label-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 /* Save Button */
 .save-button {
     display: flex;
@@ -199,8 +244,8 @@
 
 /* Edit Button */
 .edit-button {
-    font-size: 16px;
-    padding: 12px 24px;
+    font-size: 14px;
+    padding: 8px 22px;
     background-color: transparent;
     color: var(--ios-blue);
     border: 2px solid var(--ios-blue);
@@ -227,8 +272,8 @@
 
 /* Delete Button */
 .delete-button {
-    font-size: 16px;
-    padding: 12px 24px;
+    font-size: 14px;
+    padding: 8px 22px;
     background-color: #F93C3A;
     color: white;
     border: none;
@@ -697,7 +742,7 @@
     overflow: visible;
 }
 
-.lock path{
+.lock path {
     transition: fill 1s ease;
 }
 
@@ -816,4 +861,3 @@
         opacity: 1;
     }
 }
-

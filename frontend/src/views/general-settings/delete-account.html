@@ -1,0 +1,34 @@
+<div class="delete-account">
+
+    <div class="container">
+
+        <ul class="breadcrumb">
+            <li><span class="first" onclick="home.loadPage('settings')">Ajustes</span></li>
+            <li><span onclick="home.loadPage('settings-general')">Geral</span></li>
+            <li><span>Excluir minha conta</span></li>
+        </ul>
+
+        <p class="info">
+            Sentiremos sua falta! Ao excluir sua conta, todos os seus dados serão permanentemente removidos e não poderão ser recuperados. Caso queira, você pode compartilhar seu feedback <span class="click-here" onclick="home.loadPage('settings-feedback')"> aqui</span>, e responderemos por e-mail.
+            Se ainda assim preferir continuar com a exclusão, por favor, preencha os campos abaixo e clique em <span style="color: red;">"Apagar minha conta"</span>.
+        </p>
+
+        <div class="full-line">
+            <div class="item-group">
+                <label for="confirm-email">Confirme o seu endereço de email</label>
+                <input type="email" id="confirm-email" name="confirm-email">
+            </div>
+        </div>
+
+        <div class="item-group">
+            <label for="confirm-password">Digite a sua senha</label>
+            <input type="password" id="confirm-password" name="confirm-password">
+        </div>
+
+        <div class="button-container">
+            <button id="button-delete-account" class="disabled-button" onclick="dataservice.deleteAccount()">Apagar minha conta</button>
+        </div>
+
+    </div>
+
+</div>

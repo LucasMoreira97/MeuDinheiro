@@ -22,6 +22,19 @@ class Home {
                 $('#home-page').load('../src/views/settings/expenses.html');
                 break;
 
+            //About
+            case 'settings-about':
+                $('#home-page').load('../src/views/settings/about.html');
+                break;
+
+            //Feedback
+            case 'settings-feedback':
+                $('#home-page').load('../src/views/settings/feedback.html', function () {
+                    $('#type-feedback, #message-feedback').on('input', generic.inputsToSendFeedback);;
+                });
+
+                break;
+
             //Expenses
             case 'payment-method':
                 var dataservice = new DataService;
@@ -64,11 +77,15 @@ class Home {
                 break;
 
             case 'update-password':
-                var dataservice = new DataService;
-                dataservice.listUserGroupUsers();
                 $('#home-page').load('../src/views/general-settings/update-password.html');
                 break;
 
+            case 'delete-account':
+                $('#home-page').load('../src/views/general-settings/delete-account.html', function () {
+                    $('#confirm-email, #confirm-password').on('input', generic.inputsToDeleteAccount);
+                });
+
+                break;
         }
 
     }
