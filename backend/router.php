@@ -9,7 +9,6 @@ use Controllers\GenericController;
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = substr($uri, strpos($uri, '.php') + strlen('.php'));
 
-
 $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($uri) {

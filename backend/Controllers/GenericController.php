@@ -6,6 +6,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 session_start();
 
+use Models\Session;
 use Models\Users;
 use Models\UserGroups;
 
@@ -14,6 +15,7 @@ class GenericController
 
     public function controller($data)
     {
+        Session::init();
 
         $operation = $data['operation'];
         $user_id = $_SESSION['user_id'];
@@ -89,13 +91,13 @@ class GenericController
                 $group_id = $UserGroups->getIdByUserGroupUsers($user_id);
                 $group_users = $UserGroups->listGroupUsers($group_id);
 
-                foreach($group_users as $key => $group_user){
+                foreach ($group_users as $key => $group_user) {
 
                     $user_data = $Users->dataUser($group_user['user_id']);
 
-                    if($group_user['user_id'] == $user_id){
-                        $group_users[$key]['name'] = $user_data['name'].'(Você)';
-                    }else{
+                    if ($group_user['user_id'] == $user_id) {
+                        $group_users[$key]['name'] = $user_data['name'] . '(Você)';
+                    } else {
                         $group_users[$key]['name'] = $user_data['name'];
                     }
 
@@ -105,7 +107,7 @@ class GenericController
                 $response = $group_users;
                 break;
 
-            
+
             case 'remove_group_user':
 
                 $Users = new Users;
@@ -114,15 +116,13 @@ class GenericController
                 $group_id = $UserGroups->getIdByUserGroupUsers($data['user_id']);
                 $user_details = $UserGroups->listGroupUsers($group_id, $data['user_id']);
 
-                if($user_details[0]['user_type'] == 'admin'){
-                
+                if ($user_details[0]['user_type'] == 'admin') {
+
                     $response = ['success' => false, 'message' => 'Não é possível remover o administrador do grupo.'];
-                
-                }else{
+                } else {
 
                     $UserGroups->removeUserFromUserGroup($data['user_id']);
                     $response = ['success' => true, 'message' => 'O membro foi removido do grupo com sucesso.'];
-
                 }
 
                 break;
@@ -133,12 +133,26 @@ class GenericController
                 $new_password = $data['new_password'];
                 $confirm_password = $data['confirm_password'];
 
-                if($new_password != $confirm_password){
+                if ($new_password != $confirm_password) {
                     $response = ['success' => false, 'message' => 'As senhas inseridas não coincidem. Por favor, verifique e tente novamente.'];
                     return $response;
                 }
 
                 $response = (new Users)->updatePassword($user_email, $current_password, $new_password);
+                break;
+
+            case 'delete_account':
+
+                if ($user_email != $data['email']) {
+                    return ['success' => false, 'message' => 'O e-mail informado não está associado ao seu usuário. Por favor, verifique o e-mail e tente novamente.'];
+                }
+
+                $response = (new Users)->removeUser($user_email, $data['password']);
+
+                if($response['success'] === true){
+                    Session::logout();
+                }
+
                 break;
         }
 

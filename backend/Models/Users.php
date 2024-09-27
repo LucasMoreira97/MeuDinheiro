@@ -109,7 +109,7 @@ class Users extends DB
     public function dataUser($user_id)
     {
 
-        $sql = 'SELECT name, email, username, profile_picture, date_of_birth, phone_number FROM users WHERE id = :user_id';
+        $sql = 'SELECT name, email, username, profile_picture, date_of_birth, phone_number FROM users WHERE status = "active" AND id = :user_id';
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
@@ -214,6 +214,41 @@ class Users extends DB
         }
 
         return $response;
+    }
+
+    private function validateCredentials($email, $user_password)
+    {
+        $sql = 'SELECT password FROM users WHERE status = "active" AND email = :email';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        $password = $stmt->fetchColumn();
+        if ($password === false) {
+            return false;
+        }
+
+        return password_verify($user_password, $password);
+    }
+
+    public function removeUser($email, $password)
+    {
+
+        $validate = $this->validateCredentials($email, $password);
+
+        if ($validate) {
+
+            $sql = 'UPDATE users SET status = "inactive" WHERE email = :email';
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                return ['success' => true, 'message' => 'Sua conta (' . $email . ') foi excluída com sucesso.'];
+            }
+        } else {
+            return ['success' => false, 'message' => 'A senha está incorreta. Por favor, verifique e tente novamente.'];
+        }
     }
 
     public function sendEmail($data) {}

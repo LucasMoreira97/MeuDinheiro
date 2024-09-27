@@ -105,6 +105,11 @@
     width: 100%;
 }
 
+.default-icon-size{
+    height: 42px;
+    width: 42px;
+}
+
 .item-group {
     flex: 1 1 calc(33.33% - var(--spacing));
     margin-bottom: var(--spacing);

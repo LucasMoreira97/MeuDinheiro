@@ -709,11 +709,61 @@ class DataService {
         }
     }
 
-    deleteAccount(){
-        alert('fazer fluxo para deletar conta');
+    async deleteAccount() {
+
+        const $deleteAccount = $('.delete-account');
+
+        const email = $deleteAccount.find('#confirm-email').val();
+        const password = $deleteAccount.find('#confirm-password').val();
+
+
+        const uri = '/MagicMoney/backend/router.php/general';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+                operation: 'delete_account'
+            })
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+
+        if (data.success) {
+
+            const icon = '<img class="default-icon-size" src="../src/assets/eraser-solid.svg">';
+            
+            generic.popupMessage('popup', data.message, icon);
+
+            $('.redirect').html('Você será redirecionado em <span id="time-to-redirect"></span> segundos');
+            
+            let time = 10;
+
+            const interval = setInterval(function () {
+                
+                $('#time-to-redirect').text(time);
+                time--;
+
+                if (time < 0) {
+                    clearInterval(interval);
+                    window.location.href = 'home.php';
+                }
+
+            }, 1000);
+
+        } else {
+            const icon = '<img class="default-icon-size" src="../src/assets/xmark-solid.svg">';
+            generic.popupMessage('popup', data.message, icon);
+        }
+
+        generic.togglePopup('popup');
+
     }
 
-    sendFeedback(){
+    sendFeedback() {
         alert('fazer fluxo do feedback');
     }
 
