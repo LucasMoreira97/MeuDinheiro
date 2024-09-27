@@ -9,6 +9,7 @@ session_start();
 use Models\Session;
 use Models\Users;
 use Models\UserGroups;
+use Models\Feedback;
 
 class GenericController
 {
@@ -153,6 +154,10 @@ class GenericController
                     Session::logout();
                 }
 
+                break;
+
+            case 'send_feedback':
+                $response = (new Feedback)->newFeedback($user_email, $data['type'], $data['message']);
                 break;
         }
 

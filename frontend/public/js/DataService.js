@@ -763,8 +763,39 @@ class DataService {
 
     }
 
-    sendFeedback() {
-        alert('fazer fluxo do feedback');
+    async sendFeedback() {
+        const $feedback = $('.feedback');
+
+        const type = $feedback.find('#type-feedback').val();
+        const message = $feedback.find('#message-feedback').val();
+
+
+        const uri = '/MagicMoney/backend/router.php/general';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                type: type,
+                message: message,
+                operation: 'send_feedback'
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+
+            const icon = '<img class="default-icon-size" src="../src/assets/paper-plane-solid.svg">';
+            generic.popupMessage('popup', data.message, icon);
+
+        } else {
+            const icon = '<img class="default-icon-size" src="../src/assets/xmark-solid.svg">';
+            generic.popupMessage('popup', data.message, icon);
+        }
+
+        generic.togglePopup('popup');
+
+        console.log(data);
     }
 
 }
