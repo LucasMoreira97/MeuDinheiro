@@ -1,5 +1,82 @@
 class DataService {
 
+    //AJUSTES > PERFIL 
+    async loggedUser() {
+
+        const uri = '/MagicMoney/backend/router.php/profile/data';
+        const response = await fetch(uri, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await response.json();
+        return data;
+    }
+
+
+    async userProfileData() {
+
+        const data = await this.loggedUser();
+        const $userProfile = $('.user-profile-page');
+
+        $userProfile.find('#name').val(data.name);
+        $userProfile.find('#username').val(data.username);
+        $userProfile.find('#email').val(data.email);
+        $userProfile.find('#phone').val(data.phone_number);
+        $userProfile.find('#birthdate').val(data.date_of_birth);
+
+        $userProfile.find('#user-photo-preview').attr('src', data.profile_picture);
+    }
+
+    editProfileData() {
+        const $userProfile = $('.user-profile-page');
+        const $inputs = $userProfile.find('input');
+        $inputs.prop('disabled', false);
+    }
+
+    async saveProfileData() {
+
+        const $userProfile = $('.user-profile-page');
+
+        var name = $userProfile.find('#name').val();
+        var username = $userProfile.find('#username').val();
+        var email = $userProfile.find('#email').val();
+        var phone = $userProfile.find('#phone').val();
+        var birthdate = $userProfile.find('#birthdate').val();
+        var profilePictureInput = $userProfile.find('#user-photo')[0];
+        var profilePictureFile = profilePictureInput.files[0];
+
+        const formData = new FormData();
+        formData.append('operation', 'save_user_profile_data');
+        formData.append('name', name);
+        formData.append('username', username);
+        formData.append('email', email);
+        formData.append('phone', phone);
+        formData.append('birthdate', birthdate);
+
+        if (profilePictureFile) {
+            formData.append('profile_picture', profilePictureFile);
+        }
+
+        const uri = '/MagicMoney/backend/router.php/profile';
+
+        const response = await fetch(uri, {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        if (data.profile_picture) {
+            $userProfile.find('#user-photo-preview').attr('src', data.profile_picture);
+        }
+
+        alert('Perfil atualizado com sucesso!');
+    }
+
+
+
     //Ajustes > Despesas > Formas de pagamento
     async savePaymentMethod() {
 
@@ -377,7 +454,7 @@ class DataService {
         alert('removido com sucesso');
     }
 
-    //Ajustes > Receitas
+    // INCOME - FINAL - INI
     async saveIncomeRecurrence() {
 
         var recurrence_id = $('#save-income-recurrence').attr('recurrence_id');
@@ -419,16 +496,7 @@ class DataService {
 
     async listIncomeRecurrence() {
 
-        const uri = '/MagicMoney/backend/router.php/income';
-        const response = await fetch(uri, {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({
-                operation: 'list_income_recurrence'
-            })
-        });
-
-        const data = await response.json();
+        const data = await this.incomeRecurrenceData();
         var income_recurrence = '';
 
         data.map(recurrence => {
@@ -444,15 +512,27 @@ class DataService {
         });
 
         $('#list-income-recurrence ul').html(income_recurrence);
+    }
 
-        console.log(data);
+    async incomeRecurrenceData() {
+        const uri = '/MagicMoney/backend/router.php/income';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                operation: 'list_income_recurrence'
+            })
+        });
+
+        const data = await response.json();
+        return data;
     }
 
     async editIncomeRecurrence(recurrence_id) {
 
         $('#add-income-recurrence .save-button').attr('recurrence_id', recurrence_id);
 
-        const data = await this.dataIncomeRecurrence(recurrence_id);
+        const data = await this.specificIncomeData(recurrence_id);
 
         const $incomeRecurrence = $('.income-recurrence');
 
@@ -464,7 +544,7 @@ class DataService {
         $incomeRecurrence.find('#list-income-recurrence').hide();
     }
 
-    async dataIncomeRecurrence(recurrence_id) {
+    async specificIncomeData(recurrence_id) {
 
         const uri = '/MagicMoney/backend/router.php/expenses';
         const response = await fetch(uri, {
@@ -472,7 +552,7 @@ class DataService {
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({
                 recurrence_id: recurrence_id,
-                operation: 'data_income_recurrence'
+                operation: 'specific_income_data'
             })
         });
 
@@ -502,79 +582,20 @@ class DataService {
         alert('removido com sucesso');
     }
 
-    //Ajustes > Perfil
-    async userProfileData() {
 
-        const uri = '/MagicMoney/backend/router.php/profile/data';
-        const response = await fetch(uri, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
-        });
+    async selectIncomeRecurrence() {
+        const data = await this.incomeRecurrenceData();
+        var options_recurrence = '';
 
-        // Tratar erros
-        const data = await response.json();
-
-        console.log(data);
-
-        const $userProfile = $('.user-profile-page');
-
-        $userProfile.find('#name').val(data.name);
-        $userProfile.find('#username').val(data.username);
-        $userProfile.find('#email').val(data.email);
-        $userProfile.find('#phone').val(data.phone_number);
-        $userProfile.find('#birthdate').val(data.date_of_birth);
-
-        $userProfile.find('#user-photo-preview').attr('src', data.profile_picture);
+        data.map(option => { options_recurrence += `<option value="${option.id}">${option.name}</option>`; });
+        $('#recurrence').html(options_recurrence);
     }
 
-    editProfileData() {
-        const $userProfile = $('.user-profile-page');
-        const $inputs = $userProfile.find('input');
-        $inputs.prop('disabled', false);
-    }
+    // INCOME - FINAL - END
 
-    async saveProfileData() {
 
-        const $userProfile = $('.user-profile-page');
 
-        var name = $userProfile.find('#name').val();
-        var username = $userProfile.find('#username').val();
-        var email = $userProfile.find('#email').val();
-        var phone = $userProfile.find('#phone').val();
-        var birthdate = $userProfile.find('#birthdate').val();
-        var profilePictureInput = $userProfile.find('#user-photo')[0];
-        var profilePictureFile = profilePictureInput.files[0];
-
-        const formData = new FormData();
-        formData.append('operation', 'save_user_profile_data');
-        formData.append('name', name);
-        formData.append('username', username);
-        formData.append('email', email);
-        formData.append('phone', phone);
-        formData.append('birthdate', birthdate);
-
-        if (profilePictureFile) {
-            formData.append('profile_picture', profilePictureFile);
-        }
-
-        const uri = '/MagicMoney/backend/router.php/profile';
-
-        const response = await fetch(uri, {
-            method: 'POST',
-            body: formData
-        });
-
-        const data = await response.json();
-        console.log(data);
-
-        if (data.profile_picture) {
-            $userProfile.find('#user-photo-preview').attr('src', data.profile_picture);
-        }
-
-        alert('Perfil atualizado com sucesso!');
-    }
-
-    //Ajsutes > Geral
+    //USER GROUP- FINAL - INI
     async saveManagmentGroup() {
 
         const $managmentGroup = $('.managment-group');
@@ -608,8 +629,7 @@ class DataService {
         showelement.hideAdd('managment-group');
     }
 
-    async listUserGroupUsers() {
-
+    async userGroupData() {
         const uri = '/MagicMoney/backend/router.php/general';
         const response = await fetch(uri, {
             method: 'POST',
@@ -620,6 +640,12 @@ class DataService {
         });
 
         const data = await response.json();
+        return data;
+    }
+
+    async listUserGroupUsers() {
+
+        const data = await this.userGroupData();
 
         var group_users = '';
         data.map(users => {
@@ -648,6 +674,23 @@ class DataService {
         console.log(data);
     }
 
+
+    async selectUserGroupUsers() {
+        const data = await this.userGroupData();
+        const logged_user = await this.loggedUser();
+        const user_id = logged_user.id;
+
+        var group_users = '';
+        data.map(user => {
+
+            if (user.request != 'pending') {
+                group_users += `<option ${user_id == user.id ? 'selected' : ''} value="${user.id}">${user.name}</option>`;
+            }
+        });
+
+        $('#responsible').html(group_users);
+    }
+
     async removeGroupUser(user_id) {
 
         console.log(user_id);
@@ -670,6 +713,8 @@ class DataService {
 
         alert('removido com sucesso')
     }
+
+    //USER GROUP- FINAL - END
 
     async updatePassword() {
 
@@ -735,15 +780,15 @@ class DataService {
         if (data.success) {
 
             const icon = '<img class="default-icon-size" src="../src/assets/eraser-solid.svg">';
-            
+
             generic.popupMessage('popup', data.message, icon);
 
             $('.redirect').html('Você será redirecionado em <span id="time-to-redirect"></span> segundos');
-            
+
             let time = 10;
 
             const interval = setInterval(function () {
-                
+
                 $('#time-to-redirect').text(time);
                 time--;
 
@@ -797,6 +842,8 @@ class DataService {
 
         console.log(data);
     }
+
+
 
 }
 

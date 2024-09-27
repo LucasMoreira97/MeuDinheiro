@@ -109,7 +109,7 @@ class Users extends DB
     public function dataUser($user_id)
     {
 
-        $sql = 'SELECT name, email, username, profile_picture, date_of_birth, phone_number FROM users WHERE status = "active" AND id = :user_id';
+        $sql = 'SELECT id, name, email, username, profile_picture, date_of_birth, phone_number FROM users WHERE status = "active" AND id = :user_id';
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();

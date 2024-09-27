@@ -4,13 +4,12 @@
 
         <div class="item-group">
             <label for="source">Origem</label>
-            <input type="text" id="source" name="source" placeholder="Ex.: Salário, Freelancer"
-                onclick="generic.setTodayDate('income-date')">
+            <input type="text" id="source" name="source" placeholder="Adicione o nome do pagador">
         </div>
 
         <div class="item-group">
             <label for="value">Valor</label>
-            <input type="text" id="value" name="value" placeholder="Ex.: 1500" oninput="generic.formatCurrency(this)">
+            <input type="text" id="value" name="value" placeholder="0,00" oninput="generic.formatCurrency(this)">
         </div>
 
         <div class="item-group">
@@ -33,19 +32,12 @@
 
         <div class="item-group">
             <label for="recurrence">Recorrência</label>
-            <select id="recurrence" name="recurrence">
-                <option value="one-time">Única</option>
-                <option value="monthly">Mensal</option>
-                <option value="yearly">Anual</option>
-            </select>
+            <select id="recurrence" name="recurrence"></select>
         </div>
 
         <div class="item-group">
             <label for="responsible">Responsável</label>
-            <select id="responsible" name="responsible">
-                <option value="1">Lucas Moreira</option>
-                <option value="2">Ana Oliveira</option>
-            </select>
+            <select id="responsible" name="responsible"></select>
         </div>
 
         <div class="item-group">
@@ -55,7 +47,6 @@
                 <option value="pending">Pendente</option>
             </select>
         </div>
-
 
         <div class="button-container">
             <button class="save-button">Salvar</button>

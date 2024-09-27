@@ -5,6 +5,16 @@ class Home {
         switch (page) {
 
             case 'income':
+                $('#home-page').load('../src/views/' + page + '.html', function () {
+                    var dataservice = new DataService;
+                    var generic = new Generic;
+                    
+                    generic.setTodayDate('income-date');
+                    dataservice.selectIncomeRecurrence();
+                    dataservice.selectUserGroupUsers();
+                });
+                break;
+
             case 'expenses':
             case 'investments':
             case 'settings':
@@ -30,7 +40,7 @@ class Home {
             //Feedback
             case 'settings-feedback':
                 $('#home-page').load('../src/views/settings/feedback.html', function () {
-                    $('#type-feedback, #message-feedback').on('input', generic.inputsToSendFeedback);;
+                    $('#type-feedback, #message-feedback').on('input', generic.inputsToSendFeedback);
                 });
 
                 break;

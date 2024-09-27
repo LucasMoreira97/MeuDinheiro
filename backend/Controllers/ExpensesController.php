@@ -102,7 +102,7 @@ class ExpensesController
                 $response = (new IncomeRecurrence)->listIncomeRecurrence();
                 break;
 
-            case 'data_income_recurrence':
+            case 'specific_income_data':
                 $income_recurrence = (new IncomeRecurrence)->listIncomeRecurrence($data['recurrence_id']);
                 $response = $income_recurrence[0];
                 break;
