@@ -3,7 +3,7 @@
 require_once __DIR__ . '../../autoload.php';
 
 use Controllers\UserSession;
-use Controllers\ExpensesController;
+use Controllers\FinancialController;
 use Controllers\GenericController;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -25,7 +25,7 @@ switch ($uri) {
     case '/income':
     case '/expenses':
         $data = json_decode(file_get_contents('php://input'), true);
-        $response = (new ExpensesController)->controller($data);
+        $response = (new FinancialController)->controller($data);
         echo json_encode($response);
         break;
 

@@ -9,7 +9,7 @@ use Models\PaymentCategory;
 use Models\PaymentType;
 use Models\IncomeRecurrence;
 
-class ExpensesController
+class FinancialController
 {
 
     public function controller($data)
@@ -42,7 +42,7 @@ class ExpensesController
             case 'remove_payment_method':
                 $response = (new PaymentMethod)->removePaymentMethod($data['method_id']);
                 break;
-            
+
             //Payment categories
             case 'save_payment_category':
                 if ($data['category_id'] > 0) {

@@ -454,7 +454,7 @@ class DataService {
         alert('removido com sucesso');
     }
 
-    // INCOME - FINAL - INI
+    // INCOME RECURRENCE - FINAL - INI
     async saveIncomeRecurrence() {
 
         var recurrence_id = $('#save-income-recurrence').attr('recurrence_id');
@@ -591,7 +591,7 @@ class DataService {
         $('#recurrence').html(options_recurrence);
     }
 
-    // INCOME - FINAL - END
+    // INCOME RECURRENCE - FINAL - END
 
 
 
@@ -843,7 +843,39 @@ class DataService {
         console.log(data);
     }
 
+    async saveIncome(){
 
+        const operation   = 'save-income';
+        const $income     = $('.income-page');
+        const source      = $income.find('source').val();
+        const value       = $income.find('value').val();
+        const income_type = $income.find('income-type').val();
+        const income_date = $income.find('income-date').val();
+        const description = $income.find('description').val();
+        const recurrence  = $income.find('recurrence').val();
+        const responsible = $income.find('responsible').val();
+        const status      = $income.find('status').val();
+        
+        const uri = '/MagicMoney/backend/router.php/income';
+        const response = await fetch(uri, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                operation, 
+                source, 
+                value, 
+                income_type, 
+                income_date, 
+                description, 
+                recurrence, 
+                responsible, 
+                status
+            })
+        });
+
+        const data = await response.json();
+        console.log(data);
+    }
 
 }
 
