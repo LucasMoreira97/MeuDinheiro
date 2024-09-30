@@ -25,3 +25,21 @@ async function login(event) {
     }
 
 }
+
+
+
+$(document).ready(function() {
+    $('#show-register').click(function(e) {
+        e.preventDefault();
+        $('#login-form').fadeOut(500, function() {
+            $('#register-form').fadeIn(500);
+        });
+    });
+
+    $('#show-login').click(function(e) {
+        e.preventDefault();
+        $('#register-form').fadeOut(500, function() {
+            $('#login-form').fadeIn(500);
+        });
+    });
+});
