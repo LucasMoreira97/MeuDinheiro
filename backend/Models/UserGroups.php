@@ -38,7 +38,7 @@ class UserGroups extends DB
 
     public function getIdByUserGroupUsers($user_id){
 
-        $sql = 'SELECT user_group_id FROM user_groups_users WHERE user_id = :user_id';
+        $sql = 'SELECT user_group_id FROM user_groups_users WHERE user_id = :user_id AND id != 0';
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();

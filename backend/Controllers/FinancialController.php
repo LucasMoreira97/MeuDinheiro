@@ -4,10 +4,12 @@ namespace Controllers;
 
 session_start();
 
+use Models\Income;
 use Models\PaymentMethod;
 use Models\PaymentCategory;
 use Models\PaymentType;
 use Models\IncomeRecurrence;
+use Models\UserGroups;
 
 class FinancialController
 {
@@ -109,6 +111,18 @@ class FinancialController
 
             case 'remove_income_recurrence':
                 $response = (new IncomeRecurrence)->removeIncomeRecurrence($data['recurrence_id']);
+                break;
+
+
+            //New income
+            case 'save-income':
+
+                if(empty($data['source']) || empty($data['value'])){
+                    return ['success' => false, 'message' => 'Para adicionar uma receita, por favor informe a origem e o valor.'];
+                }
+                
+                $group_id = (new UserGroups)->getIdByUserGroupUsers($user_id) ?? 0;
+                $response = (new Income)->newIncome($user_id, $group_id, $data);
                 break;
         }
 

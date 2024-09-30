@@ -847,14 +847,17 @@ class DataService {
 
         const operation   = 'save-income';
         const $income     = $('.income-page');
-        const source      = $income.find('source').val();
-        const value       = $income.find('value').val();
-        const income_type = $income.find('income-type').val();
-        const income_date = $income.find('income-date').val();
-        const description = $income.find('description').val();
-        const recurrence  = $income.find('recurrence').val();
-        const responsible = $income.find('responsible').val();
-        const status      = $income.find('status').val();
+        const source      = $income.find('#source').val();
+        const value       = $income.find('#value').val();
+        const income_type = $income.find('#income-type').val();
+        const income_date = $income.find('#income-date').val();
+        const description = $income.find('#description').val();
+        const recurrence  = $income.find('#recurrence').val();
+        const responsible = $income.find('#responsible').val();
+        const status      = $income.find('#status').val();
+
+        console.log(source);
+        console.log(value);
         
         const uri = '/MagicMoney/backend/router.php/income';
         const response = await fetch(uri, {
@@ -874,7 +877,12 @@ class DataService {
         });
 
         const data = await response.json();
-        console.log(data);
+        
+        if(data.success){
+            $income.find('input').val('');
+        }
+
+        generic.showMessage(data.message, data.success);
     }
 
 }

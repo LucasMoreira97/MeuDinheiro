@@ -1,16 +1,23 @@
 class Generic {
 
     formatCurrency(input) {
-
         let currency = input.value.replace(/\D/g, '');
-        currency = (parseInt(currency) / 100).toFixed(2) + '';
-
-        let first_part = currency.split('.')[0];
-        let second_part = currency.split('.')[1];
-
+        let numericValue = parseInt(currency);
+    
+        if (isNaN(numericValue)) {
+            return;
+        }
+    
+        currency = (numericValue / 100).toFixed(2);
+    
+        let parts = currency.split('.');
+        let first_part = parts[0];
+        let second_part = parts[1];
+    
         first_part = first_part.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         input.value = first_part + ',' + second_part;
     }
+    
 
     setTodayDate(id) {
 
@@ -99,6 +106,26 @@ class Generic {
         }
     }
 
+
+    async showMessage(text, success) {
+        const message_div = $('.operation-message');
+
+        if(!success){
+            message_div.css('background-color', '#F93C3A');
+        }
+
+        message_div.text(text);
+        message_div.addClass('show');
+        
+        setTimeout(() => {
+          message_div.removeClass('show');
+          
+          setTimeout(() => {
+            message_div.text('');
+          }, 1000); 
+        }, 5000);
+      }
+    
 }
 
 

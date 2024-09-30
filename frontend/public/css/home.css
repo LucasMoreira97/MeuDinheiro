@@ -83,7 +83,7 @@
     margin-top: 4vh;
 }
 
-.click-here{
+.click-here {
     cursor: pointer;
     color: var(--bright-blue);
 }
@@ -105,7 +105,7 @@
     width: 100%;
 }
 
-.default-icon-size{
+.default-icon-size {
     height: 42px;
     width: 42px;
 }
@@ -865,4 +865,17 @@
     to {
         opacity: 1;
     }
+}
+
+.operation-message {
+    background-color: var(--vibrant-green);
+    color: #FFF;
+    padding: 10px;
+    border-radius: var(--popup-border-radius);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.operation-message.show {
+    opacity: 1;
 }
